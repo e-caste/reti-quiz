@@ -19,7 +19,7 @@ def download_latest_google_doc():
     file_name = "Raccolta quiz.txt"
     try:
         import requests
-    except:
+    except ImportError:
         print("The requests module is not installed, thus this script can't download the latest version of the Google "
               "Docs file. Please install it with:\npip3 install requests", file=stderr)
         exit(42)
