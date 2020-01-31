@@ -754,6 +754,8 @@ Esercizio 100. Il meccanismo del Network Address Translation (NAT)
    C) Permette di associare l’indirizzo logico di un host all’indirizzo IP
 Risposta: B verificata.
 Commento: Vedi lucidi “NAT”.
+
+
 Esercizio 101. In assenza di altri pacchetti, il tempo minimo necessario ad un pacchetto per attraversare il commutatore operante in modalità store-and-forward
    A) Cresce al crescere della velocità di trasmissione del pacchetto
    B) Cresce al crescere della distanza tra la sorgente e la destinazione del pacchetto
