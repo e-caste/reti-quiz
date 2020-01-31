@@ -4,12 +4,23 @@
 
 Simply download this repository by clicking the "Download Repository" button to the top right of this page or clone it from the command line with `git clone https://git.caste.dev/e-caste/reti-quiz.git`. If you have downloaded it as a .zip file, you need to unzip to a folder with `unzip reti-quiz.zip` (or by double-clicking the file in your system's file explorer).  
 Head to the directory where you have cloned it with `cd reti-quiz`, then you can simply run it with `python3 quiz.py`.  
-This project has no dependencies!
+
+This project has only `requests` as an optional dependency, to automatically download the latest version of the file from Google Docs.  
+It's recommended to install it in a virtual environment, but you may download it to your system-wide Python libraries with `pip3 install requests`.  
+
+To use a virtual environment instead (cleaner but longer approach):  
+- go to repo directory with `cd reti-quiz`
+- make it with `python3 -m venv venv`
+- activate it with `source venv/bin/activate`
+- install requests with `pip install requests`
+- use script: `python quiz.py`
+- when finished, deactivate the virtualenv with `deactivate`
 
 
 ### Usage example
 
 ```
+Do you want to update the .txt file with the latest version from Google Docs? (Press Enter to skip) [y/N] 
 Do you want to change the number of questions for this quiz? (Default is 28) [y/N] y
 What number of questions would you like? Enter a number: 3
 Quiz 103
