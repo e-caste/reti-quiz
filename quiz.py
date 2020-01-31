@@ -3,6 +3,23 @@ from random import choice
 from math import ceil
 
 
+def download_latest_google_doc():
+    file_id = "1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU"
+    dl_link = f"https://docs.google.com/document/d/{file_id}/export?format=txt"
+    file_name = "Raccolta quiz.txt"
+    try:
+        import requests
+    except:
+        print("The requests module is not installed, thus this script can't download the latest version of the Google "
+              "Docs file. Please install it with:\npip3 install requests", file=stderr)
+        exit(42)
+    response = requests.get(dl_link)
+    print(response.content)
+    with open(file_name, 'w') as f:
+        f.write(response.content.decode('utf-8'))
+
+
+
 def get_number_of_questions() -> int:
     n_questions = 0
     try:
@@ -93,4 +110,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    download_latest_google_doc()
