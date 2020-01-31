@@ -630,7 +630,7 @@ Esercizio 84. Nel caso dell’uso di un protocollo Stop-And-Wait su di un canale
    B) Può dare luogo a malfunzionamenti del protocollo, fino a causare perdita di informazione e blocco degli algoritmi
    C) Può dare luogo a malfunzionamenti del protocollo, fino a causare perdita di informazione, ma non il blocco degli algoritmi
 Risposta:  B verificata.
-Commento: sulle slide è presente un esempio di blocco dell’algoritmo e di perdita di informazioni, succede con bit di numerazione k = 1. 
+Commento: Sulle slide è presente un esempio di blocco dell’algoritmo e di perdita di informazioni, succede con bit di numerazione k = 1. 
 
 Esercizio 85. Un (N-1)-protocollo permette l’interazione
    A) Tra una (N+1)-entità ed una (N-1)-entità
@@ -719,7 +719,7 @@ Esercizio 95. I protocolli CSMA e CSMA-CD ammettono versioni 1-persistente e ver
 Risposta: B verificata.
 Commento: Vedi lucidi “CSMA”.
 
-Esercizio 96. Si supponga che tra un trasmettitore e un ricevitore che implementano uno schema ARQ (Automatic repeat request)di tipo go-back-N il tempo che intercorre tra l’inizio della trasmissione di una unità dati e la fine della ricezione del riscontro corrispondente sia costante e maggiore del tempo necessario a trasmettere la informazione memorizzabile nella finestra di trasmissione. In questa  situazione, l’aumento della velocità di trasmissione sui canali che collegano il trasmettitore al ricevitore
+Esercizio 96. Si supponga che tra un trasmettitore e un ricevitore che implementano uno schema ARQ (Automatic repeat request) di tipo Go-Back-N il tempo che intercorre tra l’inizio della trasmissione di una unità dati e la fine della ricezione del riscontro corrispondente sia costante e maggiore del tempo necessario a trasmettere la informazione memorizzabile nella finestra di trasmissione. In questa  situazione, l’aumento della velocità di trasmissione sui canali che collegano il trasmettitore al ricevitore
    A) Diminuisce la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
    B) Non riesce ad aumentare la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
    C) Aumenta la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
@@ -816,7 +816,6 @@ Esercizio 108. Nel caso della segnalazione a canale comune
 Risposta: B verificata.
 Commento: nella segnalazione a canale comune le informazioni di utente viaggiano su canali separati ma con un unico canale di segnalazione usato per controllare la segnalazione di tutti i canali utenti. Il canale di segnalazione funziona a pacchetto.
 
-
 Esercizio 109. Allo stato attuale della tecnologia, è possibile trasmettere informazione senza amplificazione lungo la tratta trasmissiva su distanze maggiori utilizzando
    A) Il canale hertziano (radio, satellite)
    B) Le fibre ottiche
@@ -850,10 +849,6 @@ Esercizio 112. Se un router rileva un checksum errato su un pacchetto IP, e quin
 Risposta: C  verificata.
 Commento: L’header checksum di IP è un campo usato per il controllo di errori dell’header.
 
-
-
-
-
 Esercizio 113. Nel modello OSI, quali delle seguenti funzioni è svolta da entità del livello sessione?
    A) L’instradamento delle unità dati in una tipologia non completamente connessa
    B) La scelta della sintassi di rappresentazione dei dati per una sessione di lavoro
@@ -885,15 +880,6 @@ Esercizio 116. Nel protocollo CSMA e CSMA-CD il concetto di “persistenza” si
 Risposta: A verificata.
 Commento: vedi lucidi “CSMA” e “CSMA-CD”.
 
-
-
-
-
-
-
-
-
-
 Esercizio 117. Nell’intestazione (header) IP, ovvero nella PCI del protocollo IP, sono contenuti
 1. Il campo Checksum a 16 bit per il controllo di correttezza dell’intestazione e dei dati contenuti nel pacchetto
 2. Il campo Sequence Number per la numerazione dei segmenti
@@ -908,7 +894,7 @@ Esercizio 118. Per quale motivo la tecnologia VDSL ha prestazioni elevate solo s
 3. Perché la minor lunghezza del cavo di rame permette l’uso di modulazione a bit rate più elevato
 4. Perchè le connessioni devono attraversare un minor numero di nodi intermedi
 Risposta: C verificata.
-Commento: Vedi lucidi “VDSL”.
+Commento: Vedi lucidi “VDSL”. 
 
 
 Esercizio 119. Il protocollo PPP (Point-to-Point Protocol) non usa i campi di indirizzo perchè
@@ -1101,7 +1087,7 @@ Risposta: A verificata.
 Commento: Per definizione un’entità comunica con altre entità dello stesso livello.
 
 
-Esercizio 139. In una rete a pacchetto store-and-forward l’aumento del numero di nodi tra sorgente e destinazione
+Esercizio 139. In una rete a pacchetto Store-and-Forward l’aumento del numero di nodi tra sorgente e destinazione
    1. Porta ad un aumento del tempo di consegna, direttamente proporzionale alla dimensione del pacchetto
    2. Porta ad un aumento del tempo di consegna, direttamente proporzionale alla media delle velocità dei canali
    3. Porta ad un aumento del tempo di consegna, inversamente proporzionale alla dimensione del pacchetto
@@ -1124,10 +1110,6 @@ Esercizio 141. Il protocollo TCP fornisce un servizio
     D) Affidabile (ovvero con garanzia di consegna) e connection oriented
 Risposta: D verificata.
 Commento: TCP fornisce funzioni di multiplazione, demultiplazione, reliable data transfer, flow control, congestion control, ovvero un servizio affidabile orientato alla connessione. Vedi lucidi “TCP”.
-
-
-
-
 
 
 Esercizio 142. Il PPP(Point-to-point-Protocol)
@@ -1167,7 +1149,7 @@ Esercizio 146. Tra le principali differenze tra una rete Frame Relay ed una rete
    A) L’utilizzo o il non utilizzo di tecniche aRQ (automatic Retransmission reQuest) in ogni tratta della rete
    B) Il trasferimento di informazione in modalità orientata alla connessione invece che non orientata alla connessione 
    C) Trasferimento di unità dati di dimensione variabile anziché di dimensione fissa
-Risposta:
+Risposta: da definire
 Commento: da definire
 
 
@@ -1180,22 +1162,12 @@ Risposta: B verificata.
 Commento: da definire
 
 
-
-
-
-
-
-
-
-
-
-
-Esercizio 148. Si considerino due LAN (Ethernet 10BaSE) A e B, collegate da uno bridge B1 e da un router R1 (B1 ed R1 sono in parallelo tra le due LAN). Si supponga che il bridge ed il router abbiano entrambe le porte attive e conoscano tutti gli indirizzi (MAC ed IP rispettivamente) degli host collegati alle due LAN. Quando un host collegato alla LAN A trasmette un pacchetto ARP per ottenere l’indirizzo MAC del router R1, quale tra le seguenti affermazioni è vera?
+Esercizio 148. Si considerino due LAN (Ethernet 10BaSE) A e B, collegate da uno bridge B1 e da un router R1 (B1 ed R1 sono in parallelo tra le due LAN). Si supponga che il bridge ed il router abbiano entrambe le porte attive e conoscano tutti gli indirizzi (MAC ed IP rispettivamente) degli host collegati alle due LAN. Quando un host collegato alla LAN A trasmette un pacchetto IP verso un host collegato alla LAN B
    1. Il pacchetto è inoltrato sulla LAN B o bridge o dal router, a seconda del valore dell’indirizzo MAC di destinazione contenuto nel pacchetto
    2. Il pacchetto è inoltrato sulla LAN B sia dal router R1 che dal bridge B1
    3. Il pacchetto è inoltrato sulla LAN B solo dal router R1
    4. Il pacchetto è inoltrato sulla LAN B solo dal bridge B1
-Risposta: D verificata.
+Risposta: A verificata.
 Commento: da definire
 
 
