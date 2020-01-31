@@ -1,21 +1,16 @@
 from sys import stderr
 from random import choice
+from math import ceil
 
 
-def extract_questions() -> list:
+def get_number_of_questions() -> int:
     n_questions = 0
     try:
         with open("Raccolta quiz.txt", 'r') as f:
             for line in f.readlines():
                 if "Esercizio" in line:
                     n_questions = max(int(line.split()[1].split(".")[0]), n_questions)
-        possible_questions = [i + 1 for i in range(n_questions)]
-        extracted_questions = []
-        for _ in range(28):  # number of actual exam questions
-            n = choice(possible_questions)
-            extracted_questions.append(n)
-            possible_questions.remove(n)
-        return extracted_questions
+        return n_questions
 
     except FileNotFoundError:
         print("File 'Raccolta quiz.txt' not found.\n"
@@ -23,8 +18,18 @@ def extract_questions() -> list:
               file=stderr)
 
 
+def extract_questions(n_questions: int = 28) -> list:
+    n_avail_questions = get_number_of_questions()
+    possible_questions = [i + 1 for i in range(n_avail_questions)]
+    extracted_questions = []
+    for _ in range(n_questions):  # number of actual exam questions
+        n = choice(possible_questions)
+        extracted_questions.append(n)
+        possible_questions.remove(n)
+    return extracted_questions
+
+
 def main():
-    extracted_questions = extract_questions()
     try:
         with open("Raccolta quiz.txt", 'r') as f:
             text = f.read()
@@ -34,6 +39,25 @@ def main():
               "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU -> File -> Download -> Normal text (.txt)",
               file=stderr)
 
+    n_q = 28
+    change_number_of_questions = input("Do you want to change the number of questions for this quiz? (Default is 28) [y/N] ")
+    if change_number_of_questions.lower() == 'y':
+        while True:
+            n_q = input("What number of questions would you like? Enter a number: ")
+            if n_q.isdigit():
+                n_avail_questions = get_number_of_questions()
+                if int(n_q) < n_avail_questions:
+                    n_q = int(n_q)
+                    extracted_questions = extract_questions(n_q)
+                    break
+                else:
+                    print(f"Please enter a lower number than {n_avail_questions}.", file=stderr)
+            else:
+                print("Input not recognized. Please try again.", file=stderr)
+    else:
+        extracted_questions = extract_questions()
+
+    correct_answers = 0
     for q_n in extracted_questions:
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
         q = q_and_a.split("Risposta")[0].replace("1.", "A)").replace("2.", "B)").replace("3.", "C)") \
@@ -55,12 +79,18 @@ def main():
             if ans.upper() in available_answers:
                 if ans.upper() == a:
                     print("Correct!")
+                    correct_answers += 1
                 else:
                     print("Wrong.")
                 print(comment + "\n")
                 break
             else:
                 ans = input("Answer not recognized. Please enter it again: ")
+
+    wrong_answers = n_q - correct_answers
+    mark = ceil((correct_answers - wrong_answers * .5) / n_q * 28)
+    print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers}")
+
 
 if __name__ == '__main__':
     main()
