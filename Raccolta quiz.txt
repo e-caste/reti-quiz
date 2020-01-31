@@ -1,0 +1,1213 @@
+﻿QUIZ RETI DI CALCOLATORI
+
+
+Esercizio 1. La segnalazione a canale comune prevede che
+   A) Gli apparati di controllo delle centrali di commutazione si scambino le informazioni di segnalazione in commutazione di pacchetto
+   B) L’informazione di più utenti sia trasmessa con segnali diversi su di uno stesso canale di  
+trasmissione
+   C) Ad ogni canale dedicato alla trasmissione dei dati d’utente sia associato un diverso canale per la segnalazione
+   D) La segnalazione tra le centrali di commutazione avvenga condividendo un solo canale via satellite
+Risposta: A verificata. 
+Commento: nella segnalazione a canale comune le informazioni di utente viaggiano su canali separati ma con un unico canale di segnalazione usato per controllare la segnalazione di tutti i canali utenti. Il canale di segnalazione funziona a pacchetto.
+
+Esercizio 2. Le caratteristiche di una topologia a maglia completamente connessa sono
+   A) Elevato numero di canali, buona tolleranza ai guasti, instradamento facile
+   B) Elevato numero di canali, buona tolleranza ai guasti, instradamento difficile
+   C) Basso numero di canali, cattiva tolleranza ai guasti, instradamento difficile
+Risposta: A verificata.
+Commento: vedi lucidi “Topologia a maglia”. Nella maglia completamente connessa c’è sempre una strada diretta tra ogni nodo.
+
+
+Esercizio 3. I servizi di telecomunicazione interattivi conversazionali sono caratterizzati da
+   A) Basse probabilità di errore nel trasferimento delle informazioni
+   B) Trasferimento delle informazioni in tempo reale
+   C) Memorizzazione delle informazioni in rete e consegna al destinatario in tempo differito
+Risposta: B verificata.
+Commento: Nei servizi interattivi conversazionali la comunicazione avviene con il trasferimento di informazioni da estremo a estremo in tempo reale. Vedi lucidi “Servizi interattivi conversazionali”.
+
+Esercizio 4. In reti a commutazione di pacchetto i fattori che inducono alla scelta di pacchetti di piccole dimensioni sono
+   A) Minore incidenza della informazione di controllo, maggiore efficienza nel trasferimento di SDU di grandi dimensioni
+   B) Migliore possibilità di parallelizzazione, minore ritardo di trasferimento, minore probabilità di errore sul bit
+   C) Migliore possibilità di parallelizzazione, minore ritardo di pacchettizzazione, minore probabilità di errore sul pacchetto
+Risposta: C verificata.
+Commento: La lunghezza dei pacchetti è determinata da: possibilità di parallelizzazione (pipeline), ritardo di pacchettizzazione, percentuale di informazione di controllo. Pacchetti brevi favoriscono la trasmissione in parallelo su canali diversi di pacchetti di una stessa comunicazione, pacchetti brevi riducono il ritardo di pacchettizzazione (importante per il traffico voce su rete a pacchetto), pacchetti lunghi riducono la percentuale di informazione di controllo. 
+
+Esercizio 5. Nel modello OSI, il livello trasporto fornisce servizi
+   A) Basandosi sui servizi dal livello applicazione
+   B) Basandosi sui servizi forniti dal livello rete
+   C) Basandosi sui servizi forniti dal livello sessione
+Risposta: B verificata.
+Commento: Si pensi alla pila ISO/OSI. Vedi lucidi sul modello OSI.
+
+Esercizio 6. Quale delle seguenti affermazioni è conforme al modello di riferimento ISO/OSI?
+   A) Una (N)-entità e una (N-1)-entità possono avere lo stesso indirizzo.
+   B) Una (N)-entità può essere associata a due diversi (N-1)-indirizzi.
+   C) Due (N)-entità possono essere associate allo stesso (N-1)-indirizzo.
+Risposta: B verificata.
+Commento: Ogni entità è caratterizzato dalla sigla (indirizzo) del proprio strato, per cui A e C risultano sbagliate e per esclusione la risposta corretta è la B. Fonte Internet.
+
+Esercizio 7. In un protocollo a finestra di tipo Go-Back-N può risultare conveniente aumentare la dimensione della finestra di trasmissione (misura in numero di dati)
+   A) Quando aumenta la velocità di trasmissione a pari dimensione delle unità dati e pari ritardi di trasferimento delle unità dati tra trasmettitore e ricevitore
+   B) Quando diminuisce la velocità di trasmissione a pari dimensione delle unità dati e pari ritardi di trasferimento delle unità tra trasmettitore e ricevitore
+   C) Quando diminuisce la distanza tra trasmettitore e ricevitore, quindi i ritardi di trasferimento delle unità dati, senza variare la velocità di trasmissione
+   D) Quando aumenta la probabilità di errore sul canale
+Risposta: A verificata.
+Commento: Efficienza di un protocollo a finestra. Supponendo di avere n=k, si ha Wt=k(1+2*(tp/tx)). All’aumentare della velocità di trasmissione, diminuisce il tempo di trasmissione tx, imponendo un aumento della Wt per mantenere l’efficienza uguale a k.
+
+Esercizio 8. Un protocollo a finestra di tipo Go-Back-N non richiede un aumento di complessità rispetto ad uno Stop-And-Wait relativamente a
+   A) Quantità di memoria richiesta al trasmettitore
+   B) Quantità minima di numeri di sequenza richiesti per distinguere le unità dati
+   C) Quantità di memoria richiesta al ricevitore
+Risposta: C verificata.
+Commento: Il Go-Back-N non richiede un aumento di complessità rispetto alla finestra di ricezione al ricevitore. Per lo Stop and Wait e per il Go-Back-N .
+
+
+
+
+
+Esercizio 9. I protocolli Aloha ed S-Aloha
+   A) Per evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast assegnano ad ogni utente un intervallo temporale prefissato in cui trasmettere
+    B) Non implementano alcun controllo preventivo per evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast; solo nel caso di interferenza (collisione) si interviene, ripetendo la trasmissione dopo un ritardo fisso
+    C) Non implementano alcun controllo preventivo per evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast; solo nel caso di interferenza (collisione) si interviene, ripetendo la trasmissione dopo un ritardo casuale
+Risposta: C verificata.
+Commento: Aloha ha una bassa efficienza perché i nodi trasmettono senza coordinarsi tra di loro, solo nel caso di collisione si esegue un backoff: le due (o più) stazioni che hanno colliso aspettano un tempo casuale prima di ritrasmettere la PDU. Il tempo casuale serve a rompere il determinismo e se nel caso le due (o più) stazioni aspettassero lo stesso tempo, si avrebbe di nuovo una collisione con probabilità 1. In questo caso si raddoppia il massimo tempo di attesa casuale.
+
+Esercizio 10. L’architettura dei protocolli Internet è organizzata
+    A) In sette livelli
+   B) In quattro livelli
+   C) In sei livelli
+   D) In modo completamente non stratificato
+Risposta: B verificata.
+Commento: Internet ad oggi, si basa sull’architettura ARPA composto da 4 livelli. I livelli sono: application, service, internetwork, network. Fonte: lucidi “Architetture Stratificate”, vedi anche videolezione.
+
+Esercizio 11. Il ricevitore TCP
+   A) Invia riscontri (ACK) cumulativi
+   B) Invia un riscontro (ACK) relativo ad ogni segmento ricevuto
+   C) Non invia riscontri
+Risposta: A verificata.
+Commento: Per definizione TCP usa protocolli a finestra quindi fa uso di ACK cumulativi. Vedi lucidi “TCP”.
+
+Esercizio 12. L’intestazione (header) del segmento TCP, ovvero la PCI del protocollo TCP,
+   A) È sempre di dimensione fissa pari a 20 byte
+   B) È di dimensione variabile a seconda delle opzioni presenti
+   C) È di dimensione fissa pari a 40 byte
+Risposta: B verificata.
+Commento: Nell’intestazione del TCP esiste un campo Options di dimensione variabile. Vedi lucidi “TCP”.
+
+
+Esercizio 13. Gli indirizzi logici in Internet sono
+   A) Determinanti in modo completamente libero dai system administrator di ogni sottorete
+   B) Organizzati in domini
+   C) Di formato completamente libero
+Risposta: B verificata.
+Commento: Vedi lucidi su IP.
+Esercizio 14. Tra AS (Autonomous System) si può utilizzare il protocollo di instradamento
+   A) EGP (Exterior Gateway Protocol)
+   B) RIP (Routing Information Protocol)
+   C) OSPF (Open Shortest Path First)
+Risposta: A verificata.
+Commento: L’interscambio di informazione tra router appartenenti ad AS differenti avviene attraverso il protocollo di routing di tipo EGP. (Fonte Wikipedia)
+
+Esercizio 15. Nel modello OSI, una (N)-connessione
+   A) Può essere realizzata mediante una o più (N-1) connessioni
+   B) E’ terminata da due (N-1)-CEP
+   C) Può essere realizzata mediante una o più (N+1)-connessioni
+   D) Può essere realizzata solamente mediante più (N-1)-connessioni
+Risposta: A verificata.
+Commento: Per definizione un (N)-strato fornisce servizi ad (N+1)-strati. Ciò significa che il suo utente (lo strato N+1) prima di poter usare il servizio dovrà richiedere una connessione. Ad un N strato possono corrispondere diverse N-1 connessioni.
+
+Esercizio 16. Rispetto allo standard Ethernet a 10 Mbit/s, nella definizione di Ethernet a 100Mbit/s il protocollo MAC
+   A) E’ stato modificato per consentire la rilevazione più efficiente delle collisioni
+   B) E’ stato modificato introducendo un meccanismo per evitare le collisioni, migliorare le prestazioni e supportare servizi in tempo reale
+   C) E’ stato mantenuto inalterato, accettando la riduzione di un fattore dieci (circa) detta “collision domain”
+   D) E’ stato mantenuto inalterato, mantenendo inalterata la dimensione massima aumentando di un fattore dieci le dimensioni minime della trama
+Risposta: C verificata.
+Commento: Vedi lucidi su MAC.
+
+Esercizio 17. La metrica (costo) in un algoritmo di instradamento
+   A) Esprime il peso da assegnare ad un (canale) link nella selezione del cammino
+   B) Esprime la complessità di calcolo dell’algoritmo        
+   C) Esprime la probabilità che venga utilizzato il cammino più breve
+Risposta: A verificata.
+Commento: Vedi lucidi.
+
+
+Esercizio 18. I vantaggi dei servizi di tipo circuito virtuale rispetto ai servizi di tipo datagram in una rete a commutazione a pacchetto sono
+   A) Minore ritardo dei pacchetti, calcolo dell’instradamento per ogni pacchetto
+   B) Minore variabilità dei ritardi dei pacchetti, mantenimento della sequenza dei pacchetti, instradamento per ogni pacchetto
+   C) Minore variabilità dei ritardi dei pacchetti, mantenimento della sequenza dei pacchetti, instradamento solo in fase di apertura della connessione
+Risposta: C verificata.
+Commento: Si pensi all’esempio fatto in classe: quando effettuo una chiamata, prima che inizi a squillare il telefono passano da 1 a 5 minuti prima di poter parlare in tempo-reale con la persona desiderata (instradamento solo in fase di apertura della connessione). Vedi lucidi “Servizio su circuito virtuale”.
+
+Esercizio 19. Quale delle seguenti affermazioni è vera riguardo ai Transparent Bridge IEEE 802.1d?
+   A) L’instradamento segue criteri di “backward learning e di flooding (ad inondazione)
+   B) L’instradamento si basa sullo scambio di tabelle di instradamento tra i bridge
+   C) L’instradamento avviene sempre in modo flooding (ad inondazione)
+Risposta: A verificata.
+Commento: (Fonte Internet).
+
+Esercizio 20. Rispetto a Fast Ethernet a 100 Mb/s (100Base T), Ethernet a 1 Gb/s permette di rispettare i vincoli temporali sul riconoscimento delle collisioni
+   A) Diminuendo la distanza tra i nodi
+   B) Imponendo la fibra ottica come mezzo trasmissivo
+   C) Aumentando la dimensione minima delle PDU
+Risposta: C verificata.
+Commento: passando ad 1Gb/s per mantenere Trasmissione > RTT andando ad agire sui tempi di propagazione ci sarebbe necessità di distanze minime tra gli host (poche decine di metri), l’unica soluzione è aumentare la dimensione minima delle PDU così da aumentare Trasmissione.
+
+Esercizio 21. Rispetto a sorgenti di tipo CBR (Constant Bit Rate), le sorgenti di tipo VBR (Variable Bit Rate)
+   A) Hanno maggiore differenza tra massima e minima velocità di trasmissione
+   B) Hanno requisiti più stringenti sul ritardo massimo
+   C) Hanno requisiti più stringenti sul ritardo medio
+Risposta: A verificata.
+Commento: CBR viene usato nelle videoconferenze (velocità di 64kb/s). VBR viene usato per lo streaming e il file transfer (per il primo ordine dei Mb/s per il secondo ordine dei kb/s a Gb/s).
+
+Esercizio 22. Il recupero di errore end-to-end in ambiente Internet, quando presente,
+   A) È effettuato sempre e solo dai processi applicativi
+   B) È effettuato al livello Transport (trasporto)
+   C) È effettuato al livello Internet (rete)
+   D) Non è previsto per nessun tipo di servizio
+Risposta: B verificata.
+Commento: L’end-to-end è uno dei principi della progettazione delle reti di computer e viene applicato su diversi protocolli di rete come nel protocollo UDP(Protocollo di livello 4, livello trasporto). (Fonte Wikipedia)
+
+
+Esercizio 23. Il protocollo POP3
+   A) E’ utilizzato per il blocco dei pop-up in un browser web
+   B) E’ utilizzato per lo scambio di messaggi di posta elettronica tra mail server
+   C) Può essere usato per trasferire messaggi di posta elettronica da un server ad un client email installato su un PC
+   D) Utilizza messaggi che includono sempre una autenticazione crittografata
+Risposta: C verificata.
+Commento: Il Post Office Protocol (POP) è un protocollo di livello applicativo di tipo client-server che ha il compito di permettere l’accesso da parte di un client ad un account di posta elettronica presente su di un host server e scaricare le e-mail dell’account stesso. La B si riferisce al protocollo SMTP.
+
+Esercizio 24. Che cosa si intende per il dominio di collisione (collision domain) in Ethernet?
+   A) La porzione di rete entro la quale viene rilevata una stessa collisione
+   B) Il numero di bit dell’intestazione dei pacchetti che possono essere danneggiati da una collisione
+   C) L’insieme dei nodi che interrompono la trasmissione a causa di una collisione
+Risposta: A verificata.
+Commento: Dominio di collisione: porzione di rete in cui due trame collidono. Vedi lucidi m“Dominio di collisione”. 
+
+Esercizio 25. In una sottorete IP (Logical IP Subnet)
+   A) Gli host condividono lo stesso prefisso di rete
+   B) Il prefisso di rete è sempre costituito dai primi tre byte dell’indirizzo
+Risposta: A verificata.
+Commento: In una rete tutte le sottoreti create dovranno avere stesso indirizzo di rete. La B è errata dato che non necessariamente il prefisso di rete è costituito nei primi 3 byte.  
+
+Esercizio 26. Nel modello di riferimento OSI una (N)-PCI può contenere
+   A) (N)-indirizzi
+   B) (N+1)-indirizzi
+   C) (N-1)-indirizzi
+Risposta: A verificata.
+Commento: Si tratta dell’header di quel livello che può contenere solo indirizzi di livello N. Sarà la N-SDU a contenere (N+1) indirizzi.
+
+
+Esercizio 27. Il protocollo TCP
+   A) Fornisce un rilevamento di errore sui dati di ogni segmento mediante un checksum
+   B) Fornisce un rilevamento di errore solo sull’intestazione del segmento
+   C) Non fornisce un rilevamento e recupero di errore sui dati
+Risposta: A verificata
+Commento: TCP offre funzionalità di controllo di errore sui pacchetti pervenuti grazie al campo checksum contenuto nella sua PDU. Vedi lucidi “TCP” (Fonte Wikipedia). 
+
+Esercizio 28. Il bit P/F(Poll/Final) delle trame nel protocollo di stato 2 LaPB 
+   A) Fornisce una conferma implicita sulle trame non ancora confermate
+   B) Permette di sollecitare l’invio di una conferma da parte del ricevitore
+   C) Accelera la trasmissione delle informazioni
+Risposta: B verificata.
+Commento: Il campo Poll e Final è un solo bit e ha due utilizzi. È chiamato Poll se viene usato dalla stazione primaria per chiedere una risposta alle stazioni secondarie, invece Final quando viene usato da una stazione secondaria  per indicare una risposta al termine della trasmissione. Ha significato solo se impostato a 1. (Fonte Wikipedia).
+
+Esercizio 29. Quali dei seguenti protocolli non realizza funzioni di delimitazione delle unità dati?
+   A) LaPB (Link access Procedure Balanced), utilizzato nel canale B ISDN
+   B) LaPF (Link access Producer to Frame-mode bearer services), utilizzato nelle reti Frame Relay
+   C) PPP (Point-to-Point Protocol), utilizzato nell’accesso domestic ad Internet
+   D) IEEE 802.2 LLC (Logical Link Control), utilizzato nelle reti locale
+Risposta: D verificata.
+Commento: I delimitatori vengono inseriti successivamente dal protocollo MAC. Vedi lucidi “IEEE 802.2 Logical Link Control”. 
+
+Esercizio 30. Che cosa è indispensabile per Ethernet in modalità full-duplex?
+   A) La possibilità di ricevere e trasmettere simultaneamente pacchetti
+   B) La disponibilità di tecniche di protezione da guasti attraverso due percorsi disgiunti tra ogni coppia di nodi
+   C) Il pieno supporto sia alla velocità di 10 Mbit/s sia alla velocità di 100 Mbit/s
+Risposta: A verificata.
+Commento: Un mezzo fisico full-duplex ha la caratteristica che trasmissione e ricezione avvengono su cavi separati. Questo mi comporta a poter ricevere e trasmettere simultaneamente pacchetti.
+
+Esercizio 31. Le caratteristiche di una topologia ad albero sono
+   A) Basso numero di canali, cattiva tolleranza ai guasti, instradamento facile
+   B) Basso numero di canali, buona tolleranza ai guasti, instradamento facile
+   C) Elevato numero di canali, buona tolleranza ai guasti, instradamento difficile
+Risposta: A verificata.
+Commento: Vedi lucidi “Topologia ad albero”.
+
+Esercizio 32. Gli indirizzi IP versione 4 sono:
+   A) Di lunghezza totale fissa, composti da una parte di lunghezza variabile che identifica la rete e da una parte di lunghezza variabile che identifica l’host
+   B) Di lunghezza totale fissa, composti da una parte di lunghezza fissa che identifica la rete e da una parte di lunghezza fissa che identifica l’host
+   C) Di una lunghezza variabile, composta da una parte di lunghezza variabile che identifica la rete e da una parte di lunghezza variabile che identifica l’host
+Risposta: A verificata. 
+Commento: Definizione IPV4. Vedi lucidi “IPV4”.
+
+Esercizio 33. In reti a commutazione di pacchetto di tipo Store-And-Forward, l’uso di PDU (pacchetti) di grandi dimensioni:
+   A) Diminuisce la probabilità di perdere informazione per errore sui bit ricevuti
+   B) Minimizza il ritardo di trasferimento perché, essendoci meno overhead dovuto alle informazioni di controllo presenti in ogni PDU, la quantità totale di informazione da inviare è minore
+   C) Richiede una intestazione di dimensione maggiore per consentire la gestione di tutta l’informazione contenuta nella PDU
+   D) Aumenta il ritardo complessivo di trasferimento dell’informazione perché ogni nodo deve ricevere l’intera PDU prima di poterla inviare sul canale successivo
+Risposta: D verificata.
+Commento: Inviare pacchetti di grandi dimensioni su nodi di tipo Store-And-Forward porta ad un ritardo non trascurabile del trasferimento dell’informazione. Per questo motivo è preferibile mandare pacchetti di piccole dimensioni in modo da minimizzare il tempo di immagazzinamento (Store).
+
+Esercizio 34. Un protocollo Selective Repeat con finestra di trasmissione di dimensione e finestra di ricezione di dimensione 
+   A) Può funzionare solo se, essendo k il numero di bit di numerazione, si ha 
+   B) Può funzionare solo se, essendo k il numero di bit di numerazione, si ha 
+   C) Può funzionare solo se, essendo k il numero di bit di numerazione, si ha 
+Risposta: A verificata.
+Commento: Vedi lucidi “Selective Repeat”.
+
+Esercizio 35. Il PPP(Point-to-Point Protocol)
+   A) Utilizza un protocollo a finestra di tipo Go-Back-N per il recupero di perdite di unità dati
+   B) Utilizza il campo di indirizzo nelle unità dati per distinguere comandi da risposte
+   C) Utilizza in modo simile a LaPB (ISDN canale B) la sequenza 01111110 per delimitare le unità dati
+Risposta: C verificata.
+Commento: Vedi lucidi “Incapsulamento di PDU PPP”.
+
+Esercizio 36. Il protocollo TCP
+   A) Fornisce un rilevamento di errore sui dati di ogni segmento mediante un checksum
+   B) Fornisce un rilevamento di errore solo sull’intestazione del segmento
+   C)Non fornisce un rilevamento e recupero di errore sui dati
+Risposta: A verificata.
+Commento: TCP offre funzionalità di controllo di errore sui pacchetti pervenuti grazie al campo checksum contenuto nella sua PDU. Vedi lucidi “TCP” (Fonte Wikipedia). 
+
+
+Esercizio 37. Quali delle seguenti prestazioni sono possibili grazie al funzionamento Store-And-Forward in una rete a pacchetto?
+   A) La possibilità di avere diverse velocità di trasmissione tra i diversi canali attestati ad uno stesso commutatore.
+   B) La riduzione dei ritardi di trasferimento dell’informazione attraverso un nodo di commutazione.
+   C) La riduzione della dimensione delle intestazioni dei pacchetti.
+Risposta: A verificata.
+Commento: Capacità di adattarsi a canali con capacità diverse.
+
+
+Esercizio 38. La differenza tra teleservizi, servizi portanti e servizi supplementari sta nel fatto che
+   A) Mentre i servizi portanti offrono soltanto il trasferimento di informazioni tra interfacce utente-rete, i teleservizi coinvolgono le funzioni degli apparati utente secondo protocolli prestabiliti; i servizi supplementari invece modificano o integrano un servizio portante ed un teleservizio
+   B) Mentre i teleservizi offrono soltanto il trasferimento di informazioni tra interfacce utente-rete, i servizi portanti coinvolgono le funzioni degli apparati utente secondo protocolli prestabiliti; i servizi supplementari sono servizi speciali per il trasferimento dati
+   C) Mentre i servizi portanti offrono soltanto il trasferimento di informazioni tra interfacce utente-rete, i teleservizi coinvolgono le funzioni degli apparati utente secondo protocolli prestabiliti; i servizi supplementari sono servizi speciali per il trasferimento dati
+Risposta: A verificata.
+Commento: Vedi lucidi “Classificazione dei servizi di telecomunicazione”.
+
+Esercizio 39. Secondo il modello OSI, le funzioni in una rete di telecomunicazioni sono
+   A) Operazioni disponibili su di una interfaccia di servizio
+   B) Le regole di interazione tra entità appartenenti allo stesso strato architetturale
+   C) Operazioni svolte all’interno di uno strato architetturale
+Risposta: C verificata.
+Commento: Vedi lucidi “Architettura di rete”.  La B è la definizione di protocollo di comunicazione: In una rete, le regole che definiscono l’interazione tra elementi di una rete si chiamano protocolli di comunicazione.
+
+Esercizio 40. Si consideri un host trasmettitore che utilizza il protocollo TCP ed un ricevitore a velocità infinita, ovvero che dichiara sempre come finestra di ricezione il valore massimo disponibile. Data una finestra corrente al trasmettitore di dimensione pari a 10 segmenti, con una finestra massima del ricevitore pari a 20 segmenti, nel momento in cui il trasmettitore riceve un segmento contenente un ACK da parte del ricevitore, quale tra le seguenti situazioni è possibile?
+   A) La finestra corrente al trasmettitore diventa pari a 3 segmenti
+   B) La finestra corrente al trasmettitore diventa pari a 51 segmenti
+   C) La finestra corrente al trasmettitore diventa pari a 11 segmenti
+   D) La finestra corrente al trasmettitore diventa pari a 13 segmenti
+Risposta: C verificata.
+Commento: Ipotizzando che l’ACK ricevuto sia il decimo di quella trasmissione e ipotizzando un TCP con Congestion Avoidance, allora la cwnd aumenta di +1 segmenti alla ricezione di tutti gli ACK.
+
+Esercizio 41. Il Domain Name System (DNS)
+   A) Permette di assegnare ad un host un indirizzo Ethernet in funzione del suo indirizzo IP
+   B) Realizza in termini OSI una funzione di mapping tra (3)-indirizzi e (2)-indirizzi
+   C) Consente ad un applicativo di conoscere l’indirizzo IP di un sito web di cui è noto il nome logico
+   D) Consente di conoscere la posizione fisica di un host Internet
+Risposta: C verificata.
+Commento: DNS protocollo di livello applicativo composto da 2 elementi fondamentali: la struttura gerarchica e il protocollo applicativo per interagire con questa struttura gerarchica. DNS è un sistema che ci permette di convertire un nome logico di un sito web in un indirizzo IP. 
+
+Esercizio 42. Dato un numero di nodi e un numero di canali, una topologia T1 per cui la distanza media tra i nodi è più piccola di un’altra topologia T2, in presenza di un traffico uniformemente distribuito,
+   A) Consente di smaltire sui canali la stessa quantità di traffico
+   B) Consente di smaltire sui canali una quantità di traffico inferiore
+   C) Consente di smaltire sui canali una quantità di traffico maggiore
+Risposta: C verificata.
+Commento: Se la distanza media diminuisce, aumenta il Throughput. “Per traffico uniforme e        topologie regolari, il traffico smaltibile è inversamente proporzionale alla distanza media.” Slide 53 Concetti Generali.
+Esercizio 43. La tecnica di piggybacking nei protocolli a finestra consiste nella possibilità di
+   A) Rimandare al trasmettitore eventuali unità dati che hanno subito errori di trasmissione
+   B) Concatenare più riscontri in un’unità dati
+   C) Trasportare informazione di riscontro e dati d’utente nella stessa unità dati
+   D) Far sì che il ricevitore segnali esplicitamente al trasmettitore eventuali perdite di unità dati
+Risposta: C verificata.
+Commento: Il piggybacking consente, nel caso di flussi di informazioni bidirezionali, la possibilità di scrivere l’informazione di riscontro (ACK) nell’intestazione della PDU che viaggia nella direzione opposta. Questo consente un risparmio di ACK. 
+
+
+Esercizio 44. Distinguere comandi e risposte nelle trame del protocollo di strato 2 LaPB ha lo scopo di
+   A) Capire se è stato inviato un bit Poll o un bit di Final
+   B) Capire quale sia il destinatario della trama
+   C) Distinguere trame di supervisione da trame di informazione
+Risposta: C verificata.
+Commento: Il protocollo LAPB appartiene alla famiglia di protocolli HDLC. Esso presenta un frame di supervisione usati per il controllo degli errori e di flusso ad esempio quando si devono mandare solo comandi, risposte e conferme (no dati). Tale frame per definizione non presenta un campo dati.
+
+
+Esercizio 45. In una rete locale (LAN) su topologia a bus con protocollo d’accesso CSMA, le quantità di tempo per cui vari nodi rilevano una collisione tra le trasmissioni di due particolari nodi
+   A) È maggiore per i nodi vicini agli estremi del bus e inferiore per i nodi al centro del bus
+   B) È la stessa per tutti i nodi nella rete
+   C) Dipende dalla posizione dei nodi rispetto ai trasmettitori dei pacchetti che generano la collisione
+Risposta: C verificata.
+Commento: Vedi lucidi “CSMA”.
+
+Esercizio 46 - Sostituire domanda duplicata eliminata
+
+
+Esercizio 47. L’intestazione (header) di un pacchetto dati in una rete a commutazione di pacchetto con servizio datagram contiene
+   A) Gli indirizzi del nodo sorgente e destinazione
+   B) L’indirizzo del nodo destinazione ed un identificatore di connessione
+   C) Un identificatore di connessione
+   D) L’indirizzo del nodo sorgente ed un identificatore di connessione,
+Risposta: A verificata.
+Commento: Vedi lucidi “IP datagram format”.
+
+Esercizio 48. Rispetto allo standard Ethernet a 10 Mbit/s, nella definizione di Ethernet a 100 Mbit/s, il protocollo MAC (quiz duplicato)
+   A) È stato modificato introducendo un meccanismo per evitare le collisioni (collision avoidance), che consente di migliorare le prestazioni e supportare servizi in tempo reale.
+   B) È stato mantenuto inalterato, accettando la riduzione di un fattore dieci (circa) della dimensione massima del “collision domain”.
+   C) È stato mantenuto inalterato, mantenendo inalterata la dimensione massima del “collision domain”, ma aumentando di un fattore dieci le dimensioni minime della trama.
+   D) È stato modificato per consentire la rivelazione più efficiente delle collisioni.
+Risposta: B verificata.
+Commento: Vedi lucidi. 
+
+Esercizio 49. Il PPP(Point-to-Point Protocol) quiz duplicato
+   A) Fa uso di un protocollo a finestra di tipo go-back-n per il recupero di perdite di unità dati
+   B) Fa uso del campo di indirizzo nelle unità dati per distinguere quelle inviate dall’utente da quelle inviate dall’operatore
+   C) Fa uso di una sequenza nota di bit per delimitare le unità dati
+Risposta: C verificata.
+Commento: Vedi lucidi “Incapsulamento di PDU PPP”.
+
+Esercizio 50. Un router IP dopo aver calcolato l’instradamento
+   A) Modifica gli indirizzi IP sorgente e destinazione del datagram
+   B) Modifica i campi Time To Live e Header Checksum nell’intestazione del datagram
+   C) Modifica esclusivamente il campo Time To Live nell’intestazione del datagram
+Risposta: B verificata.
+Commento: Se modifico Il Time To Live di conseguenza devo modificare anche l’Header Checksum altrimenti mi verrebbe dato un errore. Questo mi comporta ad escludere la C, mentre la A non ha senso come risposta. (Fonte: Marchetto)
+
+Esercizio 51. Una scheda Ethernet di uno switch elabora (ovvero legge e decide se e come instradare)
+   A) Solo i pacchetti con indirizzo MAC di destinazione broadcast
+   B) Tutti i pacchetti, indipendentemente dall’indirizzo di destinazione
+   C) Solo i pacchetti con indirizzo MAC di destinazione unicast pari a quello dello switch
+   D) Solo i pacchetti con indirizzo MAC di destinazione multicast
+Risposta: B verificata. 
+Commento: Vedere funzionamento switch.
+
+
+Esercizio 52. Quale tra le seguenti affermazioni è vera? Un host collegato alla rete Internet, nel momento in cui vuole trasmettere/ricevere dati verso/da una qualsiasi altro host della rete Internet, deve conoscere
+   A) Il proprio indirizzo IP e relativa maschera, il proprio indirizzo MAC, l’indirizzo IP del router di default, l’indirizzo IP di un DNS
+   B) Solo il proprio indirizzo MAC
+   C) Solo il proprio indirizzo IP
+Risposta: A  verificata.
+Commento: Fonte Marchetto.
+
+Esercizio 53. Per commutazione si intende
+   A) Lo scambio di informazioni che riguardano il controllo e la gestione di una rete di telecomunicazioni
+   B) Il trasferimento di informazioni da un punto ad uno o più altri punti
+   C) Il processo di interconnessione di risorse per il tempo necessario alla comunicazione
+Risposta: C verificata.
+Commento: Vedi lucidi “Funzione: commutazione”. La C rappresenta la commutazione di circuito! La commutazione in generale dovrebbe essere la B. E’ il concetto di commutazione al nodo in generale. Per fare commutazione non per forza bisogna allocare risorse per un certo tempo.
+
+Esercizio 54. Nel modello OSI, il livello rete fornisce servizi
+   A) Basandosi sui servizi forniti dal livello applicazione
+   B) Basandosi sui servizi forniti dal livello trasporto
+   C) Basandosi sui servizi forniti dal livello collegamento
+Risposta: C verificata.
+Commento: Il livello rete sta sopra il livello collegamento.
+
+Esercizio 55. In un canale radiomobile reale, il fenomeno del fading consiste nella:
+   A) Diminuzione della potenza ricevuta, causata dalla distanza tra trasmettitore e ricevitore
+   B) Rapida variazione della potenza ricevuta, causata da sorgenti che operano alla stessa frequenza
+   C) Diminuzione della potenza ricevuta, causata da sorgenti atmosferici quali pioggia e neve
+   D) Rapida variazione della potenza ricevuta, causata dalla presenza di ostacoli in movimento
+Risposta: D verificata.
+Commento: Vedi lucidi “Canale radio (mobile) reale”.
+
+
+Esercizio 56. Nell’intestazione (header) IP, ovvero nella PCI del protocollo IP, sono obbligatoriamente contenuti
+   A) L’indirizzo IP di una sorgente e destinazione
+   B) La porta di una sorgente e di destinazione
+   C) Il campo Window che permette al ricevitore di segnalare la dimensione attuale della finestra di ricezione al trasmettitore
+Risposta: A verificata.
+Commento: Vedi lucidi “IP datagram format”.
+
+Esercizio 57. Il protocollo IP
+   A) Garantisce un rilevamento dell’errore solo sull’intestazione del datagram
+   B) Garantisce un rilevamento dell’errore sull’intestazione e sul contenuto del datagram
+   C) Non fornisce alcun tipo di protezione dagli errori
+Risposta: A verificata.
+Commento: Il campo Header Checksum (di 16 bit) serve a verificare che lo header IP sia arrivato integro a destinazione. Se durante il trasporto l’header subisce delle modifiche, la checksum risulta diversa e il protocollo IP capisce che c’è stato un errore. Notare che la checksum verifica l’integrità del solo header, e non dei dati trasportati. 
+
+
+Esercizio 58. La maggior complessità del protocollo Go-Back-N rispetto al protocollo Stop-And-Wait è dovuta 
+   A) Alla maggior complessità del trasmettitore
+   B) Alla maggiore complessità del ricevitore
+   C) Alla maggiore complessità sia del ricevitore che del trasmettitore
+Risposta: A verificata.
+Commento: Dato che al ricevitore Go-Back-N e Stop-And-Wait hanno complessità presso che uguale, al trasmettitore essa risulta una più grande dell’altra dovuta che per il primo la finestra di trasmissione è maggiore di uno mentre per il secondo è uguale a uno. 
+
+Esercizio 59. L’uso di cookies nel protocollo HTTP permette di
+   A) Associare fra loro più richieste fatte da uno stesso browser o utente
+   B) Mettere in cache le risposte ricevute
+   C) Scaricare tutti gli oggetti contenuti in una pagina aprendo una sola connessione TCP
+   D) Inviare la risposta al client utilizzando diversi frammenti(Trasferimento Chunked)
+Risposta: A verificata.
+Commento: Vedi lucidi “cookies”.
+
+
+Esercizio 60. In una topologia a maglia completamente connessa con N nodi, il numero di canali bidirezionali è pari a
+   A) N(N-1)/2
+   B) 2N
+   C) N-1
+   D) N
+Risposta: A verificata
+Commento: Vedi lucidi “Topologia a maglia”.
+
+
+Esercizio 61. Il protocollo IP fornisce un servizio
+   A) Inaffidabile (ovvero senza garanzia di consegna) e connectionless
+   B) Affidabile (ovvero con garanzia di consegna) e connectionless
+   C) Inaffidabile (ovvero senza garanzia di consegna) e connection oriented
+Risposta: A verificata.
+Commento: IP è un protocollo a pacchetti senza connessione (connectionless) e di tipo best effort, che non garantisce cioè alcuna forma affidabile della comunicazione in termini di controllo di errore, controllo di flusso e controllo di congestione. (Fonte Wikipedia)
+
+Esercizio 62. Rispetto al protocollo IP, il protocollo UDP
+   A) Non aggiunge nulla
+   B) Aggiunge la capacità di trasportare messaggi distinguendo tra processi applicativi diversi sullo stesso host
+   C) Permette un trasporto affidabile della informazione
+Risposta: B verificata
+Commento: Per definizione UDP è inaffidabile (connectionless), effettua multiplazione e demultiplazione. 
+
+
+Esercizio 63. Quali delle seguenti codifiche di linea è più efficiente, ossia richiede un bit rate meno elevato a livello fisico a parità di tasso di informazione trasmesso?
+   A) Codifica 4B5B
+   B) Codifica 64B66B
+   C) Codifica 8B10B
+Risposta: B verificata
+Commento: Se ogni 4B invio 5B, per mantenere un Throughput costante devo aumentare la velocità di trasmissione di un fattore 5/4, stessa cosa per gli altri. Una codifica 64/66 mi permette di aumentare di un piccolissimo fattore 66/64, quindi richiede un bit rate meno elevato. (1.03 volte il bit rate iniziale, rispetto a 1.25 dell altre 2 codifiche.)
+
+Esercizio 64. Quali dei seguenti protocolli non realizza funzioni di delimitazione delle unità dati? 
+(quiz simile/identico/duplicato) QUIZ dupplicato
+   A) ATM (Asynchronous Transfer Mode), utilizzato nelle reti pubbliche di accesso
+   B) IEEE 802.2 LLC (Logical Link Control), utilizzato nelle reti locali
+   C) PPP (Point-to-Point Protocol), utilizzato nell’accesso domestico ad Internet
+Risposta: B verificata.
+Commento: Vedi lucidi “IEEE 802.2 LCC”.
+
+Esercizio 65. Il CIDR (Classless Inter Domain Routing), basato sull’uso delle netmasks (maschere) negli indirizzi IP, è una tecnica utilizzata al fine di
+   A) Diminuire il tempo di convergenza dei protocolli di routing
+   B) Utilizzare in modo efficiente lo spazio di indirizzamento IP
+   C) Evitare la formazione di routing loop nell’instradamento
+Risposta: B verificata.
+Commento: Vedi lucidi.
+
+
+Esercizio 66. La rete di accesso DSL separa dati e fonia sullo stesso mezzo trasmissivo tra gli apparati utente e apparati di centrale usando:
+   A) Multiplazione di tempo
+   B) Accesso multiplo a divisione di frequenza
+   C) Accesso multiplo a divisione di tempo
+   D) Multiplazione di frequenza
+Risposta: D verificata.
+Commento: Viene infatti utilizzato un filtro adsl sia da lato utente che da lato centrale proprio per dividere in frequenza voce e dati e non darsi disturbo tra di loro. Se vai a vedere, un filtro adsl è composto da un filtro passa-basso per la fonia.
+
+Esercizio 67. Il protocollo Stop-And-Wait
+   A) Può funzionare solo usando più di un bit di numerazione
+   B) Può funzionare usando un numero di bit di numerazione maggiore o uguale ad 1
+   C) Può solo funzionare usando un unico bit di numerazione
+Risposta: B verificata.
+Commento: Per definizione, nel protocollo Stop-And-Wait si riducono le possibilità di malfunzionamento usando un maggior numero di bit per la numerazione oppure un tempo di vita massimo per le PDU e gli ACK.
+
+Esercizio 68. In una topologia ad albero con N nodi, il numero di canali bidirezionali è uguale a
+   A) N
+   B) N-1
+   C) 2N
+   D) N(N-1)/2
+Risposta: B verificata.
+Commento: Vedi lucidi “Topologia ad Albero”.
+
+Esercizio 69. Nell’intestazione (header) UDP, ovvero nella PCI del protocollo UDP, sono obbligatoriamente contenuti
+   A) Il valore del Maximum Segment Size negoziato tra trasmettitore e ricevitore  
+    B) Il campo checksum, per il rilevamento dell’errore
+   C) Alcuni flag (nel campo CODE) per la apertura e chiusura della connessione
+Risposta: B verificata.
+Commento: L’UDP fornisce soltanto i servizi basilari di livello di trasporto, ovvero: multiplazione delle connessioni e la verifica degli errori mediante un checksum inserita nell’header del pacchetto. (Fonte Wikipedia)
+
+Esercizio 70. Il livello trasporto in Internet
+   A) Fornisce un trasporto affidabile dell’informazione se si utilizza il protocollo UDP
+   B) Fornisce solo un trasporto inaffidabile
+   C) Fornisce sempre un trasporto affidabile dell’informazione
+   D) Fornisce un trasporto affidabile dell’informazione se si utilizza il protocollo TCP
+Risposta: D verificata.
+Commento: TCP è un protocollo di rete a pacchetto di livello di trasporto appartenente alla suite dei protocolli internet che si occupa di controllo di trasmissione ovvero rendere affidabile la commutazione dati in rete tra mittente e destinatario. (Fonte Wikipedia)
+
+Esercizio 71. In una tabella di instradamento di un router IP è presente una maschera in cui i primi 24 bit (i più significativi) sono ad 1 e gli ultimi 8 bit (i meno significativi) sono a 0. Quale delle seguenti affermazioni è vera?
+   A) La maschera può essere associata ad un indirizzo di classe B “subnettato”
+   B) La maschera è sicuramente associata ad un indirizzo di classe A “subnettato”
+   C) La maschera non può essere associata ad un indirizzo di classe C
+Risposta: A verificata. 
+Commento: La maschera è sicuramente associata ad un indirizzo di classe C “subnettato”, può essere associata ad un indirizzo di classe B “subnettato”.
+
+Esercizio 72. Un protocollo Go-Back-N con finestra di trasmissione di dimensione Wt
+   A) Può funzionare solo usando un numero di bit di numerazione maggiore o uguale a log2(Wt)   
+   B) Può funzionare solo usando un numero di bit di numerazione maggiore o uguale a log2(Wt-1)  
+   C) Può solo funzionare usando un numero di bit di numerazione maggiore o uguale a log2(Wt+1)  
+Risposta: C verificata.
+Commento: Per definizione Go-Back-N ammette come finestra di trasmissione Wt<2^k.
+Ovvero Wt <= 2^k-1 ;  Wt+1 <= 2^k  ;   k>=log2(Wt+1)
+
+Esercizio 73. La tecnologia ADSL (Asymmetric Digital Subscriber Loop)
+   A) È stata progettata principalmente per fornire un servizio di accesso fonia/dati ad un utente residenziale che prevalentemente effettua accessi al Web come client
+   B) È stata progettata principalmente per consentire l’interconnessione di reti locali a grandi distanze
+   C) È stata progettata principalmente per fornire un servizio di accesso puramente dati ad un fornitore di servizi Web che dispone di uno o più server Web
+Risposta: A verificata.
+Commento: Vedi lucidi “ADSL”.
+
+
+Esercizio 74. Le caratteristiche di qualità richieste da un servizio di telefonia sono:
+   A) Trasferimento delle informazioni con ritardo massimo dell’ordine delle centinaia di millisecondi e jitter del ritardo estremamente basso; bit rate dell’ordine delle decine di kbit/s; probabilità di errore non superiore a qualche unità percentuale; probabilità di blocco non superiore a qualche unità percentuale
+   B) Trasferimento delle informazioni con ritardo massimo dell’ordine delle decine di secondi; probabilità di errore trascurabile; probabilità di blocco trascurabile
+   C) Trasferimento delle informazioni con ritardo massimo dell’ordine delle centinaia di millisecondi e jitter del ritardo estremamente basso; bit rate dell’ordine delle decine di Mbit/s; probabilità di errore non superiore a qualche unità percentuale; probabilità di blocco non superiore a qualche unità percentuale
+Risposta: A verificata.
+Commento: Vedi lucidi “Indici di qualità (telefonia)”.
+
+Esercizio 75. Nell’instradamento IP originario, ovvero senza uso di maschere, la scelta dell’interfaccia di uscita su cui inoltrare un pacchetto si basa
+   A) Sull’indirizzo IP completo (net_id + host_id) del destinatario
+   B) Sulla parte rete (net_id) dell’indirizzo IP del destinatario
+   C) Solo sulla parte di host (host_id) dell’indirizzo IP del destinatario
+Risposta: B verificata.
+Commento: Per scegliere dove inoltrare il pacchetto è sufficiente sapere la net_id (id di rete) del destinatario. 
+
+Esercizio 76. Il DNS (Domain Name Service):
+   A) Per aumentare l’affidabilità e la velocità di risposta del sistema utilizza un insieme di cache, ma ogni risoluzione deve comunque sempre raggiungere il server autoritativo per il dominio a cui appartiene il nome
+   B) È utilizzato dagli operatori per la vendita dei nomi di dominio ai propri clienti che necessitano di creare server pubblici
+   C) È basato su un sistema di server gerarchici, ognuno responsabile del naming di una particolare zona
+   D) Rappresenta un prodotto per distribuire il carico su più router all’interno della rete locale
+Risposta: C verificata.
+Commento: Il DNS (Domain Name Service) è un sistema utilizzato per la risoluzione di nomi dei nodi della rete (host) in indirizzi IP. Il servizio è realizzato tramite un database distribuito, costituito dai server DNS.  
+
+
+Esercizio 77. Quale tra le seguenti affermazioni nel confronto tra i protocolli Aloha e Slotted-Aloha è falsa?
+   A) Slotted-Aloha consente un miglior sfruttamento delle capacità del mezzo trasmissivo
+   B) Le prestazioni di Aloha sono meno dipendenti rispetto a Slotted-Aloha dai ritardi di propagazione
+   C) Aloha è più semplice da implementare non richiedendo una sincronizzazione di slot 
+Risposta: B verificata.
+Commento: Il protocollo Slotted Aloha aggiunge al protocollo Aloha da cui deriva un’ulteriore caratteristica, ovvero quella che il tempo è suddiviso in intervalli discreti chiamati slot. La conseguenza di tale caratteristica è che due trasmissioni o collidono completamente all’interno dello stesso slot oppure non collidono affatto; il problema delle collisioni parziali presenti in Aloha risulta eliminato. (Fonte Wikipedia) 
+
+Esercizio 78. Nel caso della commutazione di pacchetto
+   A) La funzione di commutazione alloca agli interlocutori un sottoinsieme delle risorse di rete con le quali si instaurano uno o più circuiti per il collegamento dei terminali di utente; le risorse dovranno essere rilasciate qualora esse siano necessarie per l’instaurazione di altri circuiti
+   B) La funzione di commutazione alloca agli interlocutori in uso esclusivo un sottoinsieme delle risorse di rete con le quali si instaurano uno o più circuiti per il collegamento dei terminali di utente; le risorse sono rilasciate solo alla fine della comunicazione
+   C) La funzione di commutazione non alloca agli interlocutori in uso esclusivo un sottoinsieme delle risorse di rete; tutte le risorse di rete sono sempre disponibili per la trasmissione dei pacchetti; i pacchetti attendono in apposite code che le risorse necessarie diventino disponibili
+Risposta: C verificata.
+Commento: Vedi lucidi “Commutazione di pacchetto”.
+
+Esercizio 79. Nell’intestazione (header) UDP, ovvero nella PCI del protocollo UDP sono obbligatoriamente contenuti
+   A) Il campo TTL (Time To Live) che permette l’eliminazione della rete dei pacchetti che hanno attraversato un numero eccessivo di router
+   B) La porta di sorgente e di destinazione
+   C) L’indirizzo IP di sorgente e destinazione
+Risposta: B verificata.
+Commento: Vedi lucidi “UDP: segment header”. 
+
+Esercizio 80. Le tabelle di instradamento in Internet
+   A) Indicano la sequenza di router da attraversare per raggiungere una certa destinazione
+   B) Indicano solo il prossimo router da attraversare per raggiungere la destinazione
+   C) Indicano la sequenza di autonomous system da attraversare per raggiungere una certa destinazione
+Risposta: B verificata.
+Commento: Vedi lucidi “IP routing (next hop)”.
+
+Esercizio 81. Il trasferimento dei dati tra due processi applicativi nel modello OSI avviene coinvolgendo
+   A) Solamente due entità del livello applicazione, una per ognuno dei due sistemi
+   B) Almeno una entità per ognuno dei sette livelli in entrambi i sistemi
+   C) Una entità in ciascun sistema, indipendente dal livello cui appartengono
+Risposta: B verificato.
+Commento: Essendo il livello applicativo il più alto nella pila ISO-OSI, al trasmettitore deve prima passare tutti e 6 i livelli inferiori e poi al ricevitore salire tutti i livelli fino all’ultimo.
+
+Esercizio 82. Si considerino due LAN Ethernet A e B, collegate da uno switch B1 e da un router R1 (B1 ed R1 sono in parallelo tra le due LAN). Si supponga che lo switch ed il router abbiano entrambe le porte attive e conoscano tutti gli indirizzi (MAC ed IP rispettivamente) degli host collegati alle due LAN. Quando un host collegato alla LAN A trasmette un pacchetto ARP per ottenere l’indirizzo MAC del router R1, quale tra le seguenti affermazioni è vera?
+   A) Il pacchetto è inoltrato sulla LAN B solo dal router R1
+   B) Il pacchetto è inoltrato sulla LAN B solo dallo switch B1
+   C) Il pacchetto è inoltrato sulla LAN B o dallo switch o dal router, a seconda del valore dell’indirizzo MAC di destinazione contenuto nel pacchetto
+   D) Il pacchetto è inoltrato sulla LAN B sia dal router R1 sia dallo switch B1
+Risposta: B verificata.
+Commento: Il router riceve l’ARP e riconosce che è destinato a lui tramite il payload. Quindi non lo inoltra ma risponde all’host che ha richiesto il MAC. Lo switch, essendo il pacchetto ARP inviato in broadcast, lo inoltra a tutte le sue porte tranne quella da cui lo ha ricevuto.
+
+
+Esercizio 83. Il protocollo SMTP
+   A) Opera sul protocollo UDP, poiché i messaggi di posta elettronica sono di solito brevi
+   B) È basato su messaggi che includono sempre una autenticazione crittografata
+   C) È usato per la consegna di messaggi di posta elettronica in uscita, da un client verso un dato server
+   D) È usato per trasferire messaggi di posta elettronica da un server ad un client installato su un PC
+Risposta: C verificata.
+Commento: SMTP è il protocollo utilizzato per inviare e ricevere mail dai server di posta elettronica. I client usano SMTP solo per inviare il messaggio al server mail il quale si occupa dell’invio del messaggio stesso.
+
+Esercizio 84. Nel caso dell’uso di un protocollo Stop-And-Wait su di un canale non sequenziale
+   A) Viene sempre gestito senza problemi
+   B) Può dare luogo a malfunzionamenti del protocollo, fino a causare perdita di informazione e blocco degli algoritmi
+   C) Può dare luogo a malfunzionamenti del protocollo, fino a causare perdita di informazione, ma non il blocco degli algoritmi
+Risposta:  B verificata.
+Commento: sulle slide è presente un esempio di blocco dell’algoritmo e di perdita di informazioni, succede con bit di numerazione k = 1. 
+
+Esercizio 85. Un (N-1)-protocollo permette l’interazione
+   A) Tra una (N+1)-entità ed una (N-1)-entità
+   B) Tra due (N-1)-entità
+   C) Tra due entità qualsiasi, indipendentemente dal livello, purchè appartenenti a sistemi diversi
+   D) Tra due (N)-entità
+Risposta: B verificata
+Commento: Per definizione i protocolli lavorano con entità’ dello stesso livello del protocollo
+
+Esercizio 86. Nel caso della commutazione di circuito
+   A) La funzione di commutazione alloca agli interlocutori un sottoinsieme delle risorse di rete con le quali si instaurano uno o più circuiti per il collegamento dei terminali di utente; le risorse dovranno essere rilasciate qualora esse siano necessarie per l’instaurazione di altri circuiti
+   B) La funzione di commutazione alloca agli interlocutori in uso esclusivo un sottoinsieme delle risorse di rete con le quali si instaurano uno o più circuiti per il collegamento dei terminali di utente; le risorse sono rilasciate solo alla fine della comunicazione
+   C) La funzione di commutazione non alloca agli interlocutori in uso esclusivo un sottoinsieme delle risorse di rete; tutte le risorse di rete sono sempre disponibili per la trasmissione dei pacchetti; i pacchetti attendono in apposite code che le risorse necessarie diventino disponibili
+Risposta: B verificata.
+Commento: Vedi lucidi “Commutazione a circuito”.
+
+
+
+Esercizio 87. Gli indirizzi IP versione 4 di classe C caratterizzano:
+   A) Comunicazioni multicast
+   B) (Poche) reti con un grande numero di host
+   C) (Molte) reti con un piccolo numero di host
+Risposta: C verificata.
+Commento: Gli indirizzi di classe C sono simili agli indirizzi classless con maschera /24. Questo indica un elevato numero di network e un basso numero di host (256 host per network).
+
+
+Esercizio 88. I protocolli CSMA e CSMA-CD
+   A) Cercano di evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast mediante un ascolto preventivo dello stato del canale; la trasmissione può avere inizio solo se il canale viene ascoltato libero
+   B) Non implementano alcun controllo preventivo per evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast; solo nel caso di interferenza (collisione) si interviene, ripetendo la trasmissione dopo un ritardo casuale
+   C) Cercano di evitare l’interferenza tra le trasmissioni di utenti che condividono un canale broadcast mediante un ascolto preventivo dello stato del canale; la trasmissione può avere inizio solo se il canale è effettivamente libero
+Risposta: A verificata.
+Commento: Vedi lucidi “CSMA”.
+
+Esercizio 89. Per segnalazione si intende
+   A) Il trasferimento di informazioni da un punto ad uno o più altri punti
+   B) Lo scambio di informazioni che riguardano il controllo di una rete di telecomunicazioni
+   C) Il processo di interconnessione di risorse per il tempo necessario alla comunicazione
+Risposta: B verificata.
+Commento: Vedi lucidi su “Segnalazione”.
+
+Esercizio 90. Il protocollo MIME permette
+   A) Di avere dati codificati in modo diverso all’interno del messaggio di posta elettronica
+   B) Di prenotare le risorse in rete in modo che un messaggio email con allegato un file multimediale possa raggiungere la destinazione con qualità garantita
+   C) Di trasmettere informazioni utili ai destinatari della mail per monitorare la qualità della trasmissione
+   D) Controllare la riproduzione di un file multimediale scaricato dalla rete
+Risposta: A verificata.
+Commento: Vedi lucidi “Message format: multimedia extensions”.
+
+Esercizio 91. Multiplazione statistica significa
+   A) Uno schema fisso di multiplazione in frequenza in cui la banda assegnata ai diversi flussi informativi è proporzionale alla velocità di trasmissione
+   B) Uno schema di multiplazione che prevede una scelta casuale tra multiplazione in frequenza e multiplazione nel tempo
+   C) Uno schema di multiplazione che non prevede un’assegnazione predeterminata delle risorse trasmissive ai flussi informativi
+Risposta: C verificata.
+Commento: La C corrisponde alla definizione della multiplazione statistica.
+
+
+Esercizio 92. Qual è l’ordine di grandezza della massima velocità di trasmissione su di una fibra ottica?
+   A) 1 Tbit/s
+   B) 1 kbit/s
+   C) 1 Mbit/s
+   D) 1 Gbit/s
+   E) 1 bit/s
+Risposta: A verificata.
+Commento: Vedi lucidi “La fibra ottica”.
+
+Esercizio 93. Se un router riceve un pacchetto TCP corretto, incapsulato in un pacchetto IP con intestazione destinato ad una porta TCP inesistente (per la quale non esiste un processo applicativo in attesa)
+   A) Lo scarta ed invia un pacchetto ICMP alla destinazione
+   B) Lo passa ad un processo applicativo di default che gestisce tutti i pacchetti TCP per i quali non esiste un processo applicativo disponibile
+   C) Ignora il valore della porta TCP ed invia il pacchetto
+   D) Lo scarta ed invia un pacchetto ICMP alla sorgente
+Risposta: C verificata
+Commento: Dato che il pacchetto TCP è incapsulato in un pacchetto IP, quest'ultimo non potrà rilevare l’errore della porta TCP, quindi la risposta corretta è la C.
+
+
+Esercizio 94. L’incremento della finestra corrente del trasmettitore TCP
+   A) E’ regolato solo dal ricevitore
+   B) E’ regolato dalla sola fase di controllo di congestione dello slow-start
+   C) E’ regolato dalla fase di controllo di congestione dette slow-start e di congestion avoidance
+Risposta: C verificata.
+Commento: Vedi lucidi “TCP congestion control”.
+
+Esercizio 95. I protocolli CSMA e CSMA-CD ammettono versioni 1-persistente e versione non-persistente
+   A) Nel caso della versione 1-persistente, se l’ascolto del canale indica che questo è occupato, il tentativo viene proposto di un ritardo casuale; nel caso delle versioni non-persistente, se l’ascolto del canale indica che è occupato, la trasmissione ha inizio non appena termina la trasmissione in corso 
+   B) Nel caso della versione non-persistente, se l’ascolto del canale indica che questo è occupato, il tentativo viene proposto di un ritardo casuale; nel caso delle versioni 1-persistente, se l’ascolto del canale indica che è occupato, la trasmissione ha inizio non appena termina la trasmissione in corso 
+   C) In entrambi i casi, se l’ascolto del canale indica che questo è occupato, il tentativo di trasmissione viene postergato con un ritardo casuale
+Risposta: B verificata.
+Commento: Vedi lucidi “CSMA”.
+
+Esercizio 96. Si supponga che tra un trasmettitore e un ricevitore che implementano uno schema ARQ (Automatic repeat request)di tipo go-back-N il tempo che intercorre tra l’inizio della trasmissione di una unità dati e la fine della ricezione del riscontro corrispondente sia costante e maggiore del tempo necessario a trasmettere la informazione memorizzabile nella finestra di trasmissione. In questa  situazione, l’aumento della velocità di trasmissione sui canali che collegano il trasmettitore al ricevitore
+   A) Diminuisce la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
+   B) Non riesce ad aumentare la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
+   C) Aumenta la quantità di informazione mediamente trasferita nell’unità di tempo tra il trasmettitore e il ricevitore
+Risposta: C verificata.
+Commento: n = Wt / (1+2(Tp/Tx)) => a velocità maggiori, Tx diminuisce e n (efficienza) aumenta.
+
+Esercizio 97. Nel modello OSI, la delimitazione delle trame, ovvero la capacità di identificare su un canale la fine di un pacchetto, è una funzione:
+   A) Eseguita da tutti i livelli OSI
+   B) Tipica del livello o sottolivello adiacente al livello fisico 
+   C) Esclusiva del livello rete
+Risposta: B verificata.
+Commento: Se ne occupa il livello 2.
+
+
+Esercizio 98. In caso di perdita di segmenti identificata mediante la ricezione di tre riscontri, la dimensione della finestra corrente del trasmettitore TCP reno
+   A) Viene portata a metà della dimensione della finestra del ricevitore
+   B) Viene riportata al valore iniziale, pari ad un segmento
+   C) Viene posta a metà del valore corrente (per essere precisi a metà del valore corrente più un segmento)
+Risposta: C verificata.
+Commento: Funziona così il TCP reno.
+
+Esercizio 99. La tecnologia Frame Relay prevede 
+   A) Il trasferimento di unità dati di dimensione fissa in modalità non orientata alla connessione
+   B) Il trasferimento di unità dati di dimensione fissa su circuiti virtuali
+   C) Il trasferimento di unità dati di dimensione variabile su circuiti virtuali
+Risposta: C verificata.
+Commento: Vedi lucidi “Frame Relay”.
+
+Esercizio 100. Il meccanismo del Network Address Translation (NAT)
+   A) Realizza in termini OSI una funzione di mapping  
+   B) Può modificare gli indirizzi IP dei pacchetti
+   C) Permette di associare l’indirizzo logico di un host all’indirizzo IP
+Risposta: B verificata.
+Commento: Vedi lucidi “NAT”.
+Esercizio 101. In assenza di altri pacchetti, il tempo minimo necessario ad un pacchetto per attraversare il commutatore operante in modalità store-and-forward
+   A) Cresce al crescere della velocità di trasmissione del pacchetto
+   B) Cresce al crescere della distanza tra la sorgente e la destinazione del pacchetto
+   C) Cresce al crescere del numero di bit di cui il pacchetto è composto
+Risposta: C verificata.
+Commento: Vedi lucidi “Store and forward”.
+
+Esercizio 102. Il programma applicativo PING
+   A) Utilizza messaggi del protocollo ICMP per determinare il percorso seguito per raggiungere un host appartenente alla rete internet
+   B) Utilizza una opzione del protocollo TCP per verificare la connettività di un host appartenente alla rete internet
+   C) Utilizza messaggi del protocollo ICMP per verificare la connettività di un host appartenente alla rete internet
+Risposta: C verificata. 
+Commento: Vedi lucidi del comando “PING”.
+
+Esercizio 103. E’ data una topologia di rete con N nodi e M canali unidirezionali. Ogni canale ha capacità C Mbit/s. L’algoritmo di instradamento è tale da distribuire uniformemente il traffico sui canali della rete. Il numero medio di canali attraversato da un pacchetto nel percorso della sorgente alla destinazione è pari a D. La quantità massima di traffico smaltito dalla rete aumenta se: 
+   A) Diminuisce C a pari N, M e D
+   B) Diminuisce M a pari N, D e C
+   C) Diminuisce D a pari N, M e C
+   D) Diminuisce N a pari D, M e C
+Risposta: C verificata.
+Commento: se la distanza media diminuisce, a parità di capacità del canale ,il traffico smaltito dovrebbe aumentare.
+
+
+Esercizio 104. La multiplazione statistica 
+   A) Può essere usata solamente in reti connectionless
+   B) Viene usata in reti telefoniche perché è strettamente associata all’uso di canali a velocità costante
+   C) Consiste nella condivisione di una stessa risorsa (canale trasmissivo, dispositivo di memoria, etc.) da parte di sorgenti di traffico che la usano in base alle necessità istantanee
+   D) Può essere usata solamente in reti orientate alla connessione, ma non a commutazione di circuito
+Risposta: C verificare.
+Commento: Per definizione nella multiplazione statistica si può far usare la stessa risorsa in frequenza o in tempo a più sorgenti scommettendo sul fatto che queste non le useranno contemporaneamente. Vedi spiegazione videolezione 5.
+
+
+Esercizio 105. In una rete a commutazione di pacchetto operante in modalità store-and-forward, una maggior dimensione della unità dati 
+   A) Aumenta la complessità dell’instradamento di ogni unità dati
+   B) Aumenta il tempo che intercorre da quando una unità dati raggiunge l’ingresso di un commutatore a quando questa lascia il commutatore
+   C) Aumenta il numero di operazione che devono essere effettuate da un commutatore per trasferire la stessa quantità totale di informazione utente
+Risposta: B verificata.
+Commento: Pacchetti lunghi porta ad un maggior tempo di store da parte del nodo ricevente.
+
+Esercizio 106. Il controllo di congestione nel protocollo TCP 
+   A) Non è disponibile
+   B) Si basa su una decisione autonoma da parte del trasmettitore sulla base di eventuali riscontri (ACK) duplicati e sullo scadere del timeout
+   C) Si basa sulla segnalazione da parte del ricevitore della finestra di ricezione disponibile
+Risposta: B verificata.
+Commento: Per il controllo della congestione vado ad incrementare di un maximum segment size ogni round trip time la dimensione della mia CWND finchè non vedo che c’è una perdita (time out). Per effettuare questo incremento, si incrementa di 1 la dimensione corrente del CWND per ogni ACK ricevuto. 
+
+Esercizio 107. I protocolli a finestra sono chiamati anche ARQ (Automatic Retransmission reQuest) perchè
+   A) Nel caso di arrivo di un pacchetto errato il ricevitore chiede la ritrasmissione
+   B) Nel caso di mancato ritorno di un ACK il ricevitore chiede la ritrasmissione
+   C) Lo scadere del timeout al trasmettitore corrisponde ad una richiesta automatica di ritrasmissione
+Risposta: A verificata.
+Commento: ARQ: I bit di parità sono usati per cercare di rilevare gli errori e permettere al ricevitore di chiedere la ritrasmissione della PDU. Vedi lucidi “Correzione o recupero”. (Soluzioni ufficiali dicono che la risposta giusta è la C).
+
+Esercizio 108. Nel caso della segnalazione a canale comune
+   A) Ad ogni canale per il trasferimento di informazioni di utente corrisponde un canale di segnalazione
+   B) Un solo canale di segnalazione viene usato per controllare numerosi canali che trasferiscono informazioni di utente; il canale di segnalazione opera in modalità pacchetto
+   C) Un solo canale di segnalazione viene usato per controllare numerosi canali che trasferiscono informazioni di utente; il canale di segnalazione opera in modalità circuito
+Risposta: B verificata.
+Commento: nella segnalazione a canale comune le informazioni di utente viaggiano su canali separati ma con un unico canale di segnalazione usato per controllare la segnalazione di tutti i canali utenti. Il canale di segnalazione funziona a pacchetto.
+
+
+Esercizio 109. Allo stato attuale della tecnologia, è possibile trasmettere informazione senza amplificazione lungo la tratta trasmissiva su distanze maggiori utilizzando
+   A) Il canale hertziano (radio, satellite)
+   B) Le fibre ottiche
+   C) I doppini telefonici
+   D) I cavi coassiali
+Risposta: A verificata.
+Commento: La B è sbagliata, fibra ottica: totale immunità da disturbi elettromagnetici, bassa attenuazione (~0.1dB/km), dipendente dalla lunghezza d’onda, richiede cavi con amplificatori ottici ridondati ogni 30/50 Km. La risposta giusta è la A.
+
+
+Esercizio 110. La funzione di (N+1)-direttorio associa
+   A) Un (N+1)-indirizzo ad un (N)-indirizzo
+   B) Un (N+1)-titolo ad un (N)-indirizzo
+   C) Un (N+1)-titolo ad un (N+2)-indirizzo
+Risposta:  B verificata.
+Commento: Esiste una funzione di livello N detta (N)direttorio che stabilisce una corrispondenza tra gli (N) titoli e gli (N-1)indirizzi degli (N-1)SAP attraverso cui le (N)entità accedono ai (N-1) servizi. Essendo l’(N+1) direttorio la risposta dovrebbe quindi essere la B. Fonte:
+https://www.docsity.com/it/appunti-di-reti-telematiche-modello-osi/496/
+
+
+Esercizio 111. Il preambolo che viene anteposto alle unità dati IEEE 802.3 (Ethernet) è necessario per
+   A) Consentire di mantenere la rete sincrona
+   B) Consentire la sincronizzazione dei ripetitori e dei ricevitori incontrati sulla rete locale
+   C) Consentire ai ripetitori di ritrasmettere le unità dati alla stessa velocità alla quale sono stati ricevuti
+Risposta: B verificata.
+Commento: Preambolo (di 7 byte): ciascuno di questi primi 7 byte ha valore 10101010 e servono a “svegliare” gli adattatori del ricevente e a sincronizzare gli oscillatori con quelli del trasmittente. Fonte:“Wikipedia”. 
+
+Esercizio 112. Se un router rileva un checksum errato su un pacchetto IP, e quindi un potenziale errore sugli indirizzi IP contenuti nel pacchetto, in fase di instradamento
+   A) Lo scarta ed invia un pacchetto ICMP alla sola sorgente
+   B) Lo scarta ed invia un pacchetto ICMP sia alla sorgente sia alla destinazione
+   C) Lo scarta senza segnalarlo a nessun’altra entità di rete
+   D) Lo inoltra comunque verso la destinazione, inviando tuttavia un pacchetto ICMP alla sorgente per segnalare l’errore
+Risposta: C  verificata.
+Commento: L’header checksum di IP è un campo usato per il controllo di errori dell’header.
+
+
+
+
+
+Esercizio 113. Nel modello OSI, quali delle seguenti funzioni è svolta da entità del livello sessione?
+   A) L’instradamento delle unità dati in una tipologia non completamente connessa
+   B) La scelta della sintassi di rappresentazione dei dati per una sessione di lavoro
+   C) La definizione di punti di sincronizzazione in un flusso di unità dati
+Risposta: C verificata.
+Commento: I compiti del livello sessione sono: possibilità di intervento su dialogo tra pari, se ci sono errori nella connessione si ripristina la sessione utilizzando punti di sincronizzazione, gestione attività.
+
+Esercizio 114. La complessità delle procedure di instradamento utilizzate, all’interno di un nodo, per inoltrare informazioni ha maggior influenza sulle prestazioni di una rete nel caso di
+   A) Commutazione di pacchetto senza circuiti virtuali (modalità datagram)
+   B) Commutazione di pacchetto con circuiti virtuali
+   C) Commutazione di circuito
+Risposta: A  verificata.
+Commento: Nel caso di datagram (no circuiti virtuali) occorre identificare in ogni pacchetto la coppia sorgente/destinazione cosa che comporta ad una maggiore complessità delle prestazioni di un nodo di rete. Nel caso di circuiti virtuali è sufficiente invece identificare il circuito virtuale. La coppia sorgente/destinazione è utilizzata solamente in fase di apertura del circuito. Vedi lucidi “Informazione di indirizzamento”. 
+
+Esercizio 115. Il formato LLC SNaP (SubNetwork access Protocol) del protocollo IEEE 802.2 LLC
+   A) Permette la condivisione di un mezzo trasmissivo broadcast
+   B) Permette la coesistenza di un gran numero di protocolli di livello superiore al livello 2
+   C) È richiesto in Internet per trasferimento di unità dati nelle sottoreti
+   D) Garantisce il riconoscimento di errori di trasmissione 
+Risposta: B verificata. 
+Commento: SNAP indica il protocollo di livello superiore. Vedi “Reti private/locali LLC Logical Link Control”.
+
+
+Esercizio 116. Nel protocollo CSMA e CSMA-CD il concetto di “persistenza” si riferisce a:
+1. La modalità con cui avviene il tentativo di trasmissione, se l’ascolto del canale indica che questo è occupato
+2. Il calcolo del tempo per il quale una stazione è autorizzata ad occupare il canale
+3. La modalità con cui avviene il tentativo di ritrasmissione, se si è verificata una collisione
+4. Il tempo durante il quale due trasmissioni si sovrappongono sul canale, condizione necessaria perchè la collisione sia rilevata
+Risposta: A verificata.
+Commento: vedi lucidi “CSMA” e “CSMA-CD”.
+
+
+
+
+
+
+
+
+
+
+Esercizio 117. Nell’intestazione (header) IP, ovvero nella PCI del protocollo IP, sono contenuti
+1. Il campo Checksum a 16 bit per il controllo di correttezza dell’intestazione e dei dati contenuti nel pacchetto
+2. Il campo Sequence Number per la numerazione dei segmenti
+3. I campi Identification e Fragment Offset che permettono la gestione della frammentazione dei pacchetti
+Risposta: C verificata.
+Commento: La risposta A è sbagliata, dato che dato che l’header checksum non controlla la correttezza dei dati ma solo la correttezza dell’intestazione. La C è giusta dato che corrisponde con la definizione del Fragment Offset.
+
+
+Esercizio 118. Per quale motivo la tecnologia VDSL ha prestazioni elevate solo se la distanza tra cabina di strada e casa dell’utente è inferiore al centinaio di metri?
+1. Perché si riduce il ritardo end-to-end tra la casa dell’utente e la centrale dell’operatore
+2. Perché si riducono i costi della posa dei cavi
+3. Perché la minor lunghezza del cavo di rame permette l’uso di modulazione a bit rate più elevato
+4. Perchè le connessioni devono attraversare un minor numero di nodi intermedi
+Risposta: C verificata.
+Commento: Vedi lucidi “VDSL”.
+
+
+Esercizio 119. Il protocollo PPP (Point-to-Point Protocol) non usa i campi di indirizzo perchè
+1. Sfrutta gli indirizzi del MAC sottostante
+2. Sfrutta gli indirizzi del livello superiore
+3. Deve operare su collegamenti punto-punto
+4. Non ha spazio nell’intestazione della trama
+Risposta: C verificata.
+Commento: Vedi lucidi sul “PPP”.
+
+
+Esercizio 120. Il protocollo DHCP prevede che
+1. Un client utilizzi un indirizzo IP non appena lo riceva dal server in un messaggio DHCP offer.
+2. Un client possa scollegarsi dalla rete senza comunicarlo al server.
+3. Se esiste un server, questo sia unico nella rete locale del client.
+4. Il server non fornisca mai nella sua risposta anche l’indirizzo IP di un server DNS.
+Risposta: B verificata. 
+Commento: La risposta A è sbagliata dato che dopo il DHCP offer ho solo delle proposte. Solamente dopo il DHCP ACK il client può fare uso dell’indirizzo IP offerto dal server DHCP. La C risulta sbagliata dato che nella rete locale di un client possono esistere più server DHCP. La D è sbagliata, infatti il server DHCP fornisce al client DHCP indirizzi IP di uno o più server DNS. Per esclusione la risposta giusta è la B. Fonte “Wikipedia”.
+
+
+Esercizio 121. Le funzioni fondamentali del livello collegamento nel modello OSI sono
+1. Controllo di flusso e recupero degli errori di trasmissione
+2. Instradamento delle unità dati
+3. Trasferimento delle cifre binarie sul canale
+Risposta: A verificata.
+Commento: Vedi lucidi “Livello Collegamento”.
+
+
+Esercizio 122. Durante la fase di slow-start del controllo di congestione di TCP reno, la finestra corrente del trasmettitore
+1. Viene dimezzata per ogni riscontro (ACK) mancante
+2. Cresce di un segmento per ogni riscontro (ACK) ricevuto
+3. Raddoppia per ogni riscontro (ACK) ricevuto
+Risposta: B verificata.
+Commento: vedi lucidi TCP reno.
+
+
+Esercizio 123. Qual è l’ordine di grandezza della massima velocità di trasmissione su cavo coassiale?
+1. 1 Tbit/s
+2. 1 Mbit/s
+3. 1 bit/s
+4. 1 kbit/s
+5. 1 Gbit/s
+Risposta: B verificata.
+Commento: Cavo coassiale: velocità trasmissive circa le centinaia di Mbit/s. Vedi lucidi “Cavo coassiale”.
+
+
+Esercizio 124. I protocolli a finestra possono essere usati 
+1. Solo per le comunicazioni che utilizzano una connessione
+2. Sia per le comunicazioni che utilizzano una connessione che per quelle che non la utilizzano
+3. Solo per le comunicazioni che non utilizzano una connessione
+Risposta: A
+Commento: da definire
+
+
+Esercizio 125. L’Address Resolution Protocol (ARP)
+1. Consente di ottenere un indirizzo Ethernet da assegnare alla scheda della macchina che ha effettuato la richiesta ARP
+2. Consente ad un host di conoscere l’indirizzo ip del suo DNS server
+3. Realizza in termini OSI una funzione di mapping (traduzione) tra (3)-indirizzi e (2)-indirizzi
+Risposta: C
+Commento: consente di conoscere l’indirizzo mac di un’altro host conoscendo il suo indirizzo ip
+
+
+Esercizio 126. Nel modello OSI, la segmentazione eseguita da un’entità di livello (N+1)
+1. Crea tante (N+1)-PDU a partire da una singola (N+1)-SDU
+2. Crea una (N+1)-PDU a partire da tante (N)-SDU
+3. Accorpa tante (N+1)-PDU in un’unica (N)-SDU
+4. Crea tante (N+1)-PCI per la stessa (N+1)-PDU
+Risposta: A verificata.
+Commento: La segmentazione può avvenire costruendo più (N)-PDU da una (N)-SDU generando più (N-1)-SDU da una (N)-PDU. Andando quindi a sostituire N con N+1 si ottiene la risposta A. Vedi lucidi “Creazione PDU”.
+
+
+Esercizio 127. Siano e le dimensioni, rispettivamente, della finestra di trasmissione e delle finestre di ricezione in un protocollo a finestra. Sia inoltre N la quantità totale di numeri di sequenza disponibili per distinguere le unità dati. Quale dei seguenti vincoli è condizione necessaria e sufficiente ad evitare malfunzionamenti su di un canale che non inverte l’ordine delle unità dati?
+1. 2. 3. 4. Risposta: D
+Commento: da definire 
+
+
+Esercizio 128. I tre elementi fondamentali che definiscono un protocollo sono:
+   1. Algoritmi, formati, temporizzazioni
+   2. Algoritmi, formati, entità
+   3. Algoritmi, servizi, temporizzazioni 
+Risposta: A verificata.
+Commento: Per definizione un protocollo si definisce come semantica, sintassi, temporizzazione. Vedi lucidi “Protocolli”.
+
+
+Esercizio 129. Una scheda Ethernet di un Bridge (ovvero legge e decide se e come instradare)
+   1. Tutti i pacchetti, indipendentemente dall’indirizzo di destinazione
+   2. Solo i pacchetti con indirizzo MAC di destinazione unicast pari a quello del bridge
+   3. Solo i pacchetti con indirizzo MAC di destinazione broadcast
+   4. Solo i pacchetti con indirizzo MAC di destinazione multicast
+Risposta: A
+Commento: da definire
+
+
+Esercizio 130. Quale tra le seguenti affermazioni è falsa?
+   1. Un router IP può utilizzare il protocollo ARP (Address Resolution Protocol) per conoscere l’indirizzo MAC del router o dell’host cui deve consegnare un pacchetto IP
+   2. Un host può utilizzare messaggi ICMP per verificare la connettività di un altro host alla rete Internet.
+   3. Un router IP, che non effettua funzione di NAT (Network Address Translator), non modifica gli indirizzi IP dei pacchetti che deve ri-trasmettere
+   4. Un host IP effettua sempre solo consegne dirette
+Risposta: D verificata.
+Commento: A B e C risultano esatte essendo le definizioni di ARP ICMP e NAT. Per esclusione la risposta è la D.
+
+
+Esercizio 131. Per evitare il blocco o la perdita di unità dati in un protocollo a finestra a causa di canali non sequenziali, è utile
+   1. Numerare le PDU su un numero di bit maggiore di 1 e non limitare il tempo di vita delle PDU nella rete
+   2. Numerare le PDU su un numero di bit maggiore di 1 e limitare il tempo di vita delle PDU nella rete
+   3. Numerare le PDU su un solo bit e limitare il tempo di vita delle PDU nella rete
+Risposta: B verificata.
+Commento: Per definizione nei protocolli a finestra occorre numerare le PDU su un numero di bit maggiore di 1. E’ necessario che i pacchetti abbiano un tempo di vita minimo (Time to Live) altrimenti si porterebbe alla congestione dei nodi intermedi.
+
+
+Esercizio 132. I vincoli sulla massima estensione di una rete locale IEEE 802.3 (CSMA/CD) derivano
+   1. Sia dal ritardo di propagazione dei segnali da un estremo all’altro della rete, sia dall’attenuazione dei segnali sui mezzi trasmissivi.
+   2. Sia dall’attenuazione dei segnali sui mezzi trasmissivi, sia dai ritardi massimi tollerati dagli utenti del servizio MAC
+   3. Dal numero di bit che sarebbero necessari per aumentare le unità dati nel caso di grandi ritardi di propagazione
+Risposta: A
+Commento: da definire
+
+
+Esercizio 133. Nel caso in cui si utilizzi un protocollo a finestra su un canale che non consente inversioni nell’ordine di sequenza delle unità dati trasmesse (ovvero su canale sequenziale), supponendo di utilizzare una numerazione progressiva non ciclica, le finestre di trasmissione e di ricezione non possono mai trovarsi nella seguente situazione:
+   1. Nessun numero di sequenza compreso nella finestra di ricezione è compreso è compreso anche nella finestra di trasmissione
+   2. Il numero di sequenza più piccolo nella finestra di trasmissione è più piccolo del più piccolo numero di sequenza nella finestra di ricezione
+   3. Il numero di sequenza più piccolo nella finestra di ricezione è più piccolo del più piccolo numero di sequenza nella finestra di trasmissione.
+   4. Il numero di sequenza più grande nella finestra di ricezione è più grande del più grande numero di sequenza nella finestra di trasmissione
+Risposta: C
+Commento: A è possibile nel caso in cui tutti i pacchetti sono stati ricevuti ma ancora nessun ACK è arrivato al trasmettitore. B e D sono entrambe il caso in cui la finestra del ricevitore è avanzata ma il trasmettitore non ha ancora ricevuto l’ACK. C non si può verificare perché la finestra di trasmissione può avanzare solo in seguito alla ricezione di ACKs i quali devono essere mandati dal ricevitore dopo la ricezione di un pacchetto, ma la ricezione comporterebbe per forza uno slide in avanti del ricevitore, quindi il ricevitore non rimane mai “indietro” rispetto al trasmettitore.
+
+
+Esercizio 134. I protocolli di sottolivello MAC (Medium Access Control) hanno scopo
+   1. Di permettere la condivisione di un canale broadcast mediante un algoritmo distribuito
+   2. Di permettere la condivisione di un canale broadcast mediante un algoritmo centralizzato
+   3. Di permettere la condivisione di un canale punto-punto
+Risposta: A verificata.
+Commento: Nel sottolivello MAC i protocollo ad accesso casuale risultano essere: Aloha, CSMA, CSMA/CD e CSMA/CA. Nei protocolli ad accesso casuale tutte le stazioni paritarie, implementano un algoritmo distribuito per accedere al mezzo, non esiste alcun elemento centralizzato. Fonte: “Internet”.
+
+
+Esercizio 135. Lo standard IEEE 802.3 (CSMA/CD) prevede unità dati (comprendendo anche lo strato 2)
+   1. Di dimensione variabile tra 10 e 4500 ottetti
+   2. Di dimensione variabile tra 64 e 1518 ottetti
+   3. Di dimensione fissa pari a 53
+Risposta: B verificata.  
+Commento: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Esercizio 136. Quale tra le seguenti affermazioni è vera?
+   1. Nello standard commerciale Ethernet (protocolli di accesso CSMA/CD), si è definita una dimensione minima di pacchetto per garantire una corretta identificazione delle collisioni
+   2. Nello standard commerciale Ethernet (protocollo di accesso CSMA/CD), si è definita una dimensione minima di pacchetto per distinguere i pacchetti da quelli dello standard IEEE 802.3
+   3. Nello standard commerciale Ethernet (protocollo di accesso CSMA/CD), si è definita una dimensione minima di pacchetto per garantire prestazioni migliori, in termini di traffico smaltito, al protocollo di accesso rispetto a quello che si avrebbero con pacchetti di dimensione massima
+Risposta: A verificata.
+Commento: Su ethernet la collisione è funzione della lunghezza del pacchetto.
+
+
+Esercizio 137. Nell’intestazione (header) TCP, ovvero nella PCI del protocollo TCP, sono obbligatoriamente contenuti
+   1. Il campo TTL (Time To Live) che permette l’eliminazione dalla rete dei pacchetti che hanno attraversato un numero eccessivo di router
+   2. Il sequence number e l’ack number, per la numerazione del segmento e dei riscontri (ACK)
+   3. Il campo fragmentation per la gestione della frammentazione dei segmenti
+Risposta: B verificata.
+Commento: Vedi lucidi TCP.
+
+
+Esercizio 138. Un protocollo
+   1. E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di pari livello
+   2. E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di stesso sistema
+   3. E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due sistemi che vengono collegati tra loro
+   4. E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di sistemi diversi
+Risposta: A verificata.
+Commento: Per definizione un’entità comunica con altre entità dello stesso livello.
+
+
+Esercizio 139. In una rete a pacchetto store-and-forward l’aumento del numero di nodi tra sorgente e destinazione
+   1. Porta ad un aumento del tempo di consegna, direttamente proporzionale alla dimensione del pacchetto
+   2. Porta ad un aumento del tempo di consegna, direttamente proporzionale alla media delle velocità dei canali
+   3. Porta ad un aumento del tempo di consegna, inversamente proporzionale alla dimensione del pacchetto
+Risposta: A verificata.
+Commento: In modalità store and forward ogni nodo deve prima effettuare lo store di ogni pacchetto e solo successivamente può inoltrarlo al nodo successivo direttamente proporzionale alla  dimensione del pacchetto.
+
+
+Esercizio 140. Il protocollo UDP fornisce un servizio
+   A) Inaffidabile (ovvero senza garanzia di consegna) e connectionless
+   B) Affidabile (ovvero con garanzia di consegna) e connectionless
+   C) Inaffidabile (ovvero senza garanzia di consegna) e connection oriented
+Risposta: A verificata.
+Commento: Per definizione UDP implementa solo funzioni di multiplazione e demultiplazione connectionless inaffidabile. Vedi lucidi “UDP”.
+
+
+Esercizio 141. Il protocollo TCP fornisce un servizio
+   A) Inaffidabile (ovvero senza garanzia di consegna) e connectionless
+   B) Affidabile (ovvero con garanzia di consegna) e connectionless
+   C) Inaffidabile (ovvero senza garanzia di consegna) e connection oriented
+    D) Affidabile (ovvero con garanzia di consegna) e connection oriented
+Risposta: D verificata.
+Commento: TCP fornisce funzioni di multiplazione, demultiplazione, reliable data transfer, flow control, congestion control, ovvero un servizio affidabile orientato alla connessione. Vedi lucidi “TCP”.
+
+
+
+
+
+
+Esercizio 142. Il PPP(Point-to-point-Protocol)
+   A) Utilizza la tecnica di byte-stuffing per garantire la trasparenza dei dati
+   B) Utilizza la tecnica di bit-stuffing per garantire la trasparenza dei dati
+   C) Non garantisce la trasparenza dei dati
+Risposta: A verificata.
+Commento: Vedi lucidi sul PPP.
+
+
+Esercizio 143. Confrontando Fast Ethernet a 100 Mb/s (100Base T) con Ethernet a 10 Mb/s, quale delle seguenti affermazioni è falsa?
+   A) I vincoli di distanza tra i nodi sono più stringenti
+   B) Viene utilizzato un diverso protocollo di accesso
+   C) Viene utilizzato un diverso livello fisico
+Risposta: B verificata.
+Commento: da definire
+
+
+Esercizio 144. Quali dei seguenti protocolli non realizza funzioni di rilevamento errore sulle unità dati?
+   A) LaPB (Link access Protocol Balanced)
+   B) IEEE 802.2 LLC (Logical Link Protocol)
+   C) PPP (Point-to-Point Protocol)
+    D) LaPF (Link access Procedure to Frame-mode bearer services)
+Risposta: B verificata.
+Commento: Vedi lucidi sul LLC.
+
+
+Esercizio 145. Quale tra le seguenti affermazioni è vera?
+   A) Una topologia T1, con N nodi, C canali e distanza media M1, consente sempre di smaltire una   quantità di traffico minore di una topologia T2, con N nodi, C canali e distanza media M2>M1, solo con traffico uniformemente distribuito tra nodi.
+   B) Una topologia T1, con N nodi, C canali e distanza media M1, consente sempre di smaltire una quantità di traffico minore di una topologia T2, con N nodi, C canali e distanza media M2>M1, indipendentemente dalla distribuzione di traffico.
+   C) La quantità di traffico smaltita in una topologia T1, con N nodi, C canali e distanza media M1, rispetto a quella smaltita in una topologia T2, con N nodi, C canali e distanza media M2>M1, dipende dalla distribuzione del traffico tra nodi
+Risposta: C verificata.
+Commento: da definire.
+
+
+Esercizio 146. Tra le principali differenze tra una rete Frame Relay ed una rete  Internet IP si possono annoverare:
+   A) L’utilizzo o il non utilizzo di tecniche aRQ (automatic Retransmission reQuest) in ogni tratta della rete
+   B) Il trasferimento di informazione in modalità orientata alla connessione invece che non orientata alla connessione 
+   C) Trasferimento di unità dati di dimensione variabile anziché di dimensione fissa
+Risposta:
+Commento: da definire
+
+
+Esercizio 147. Si consideri una rete LAN Ethernet con 10 nodi. Si partizioni la rete in due reti interconnesse da bridge trasparenti. Quale tra le seguenti affermazioni è falsa?
+   1. Il bridge separa i domini di collisione delle due reti interconnesse
+   2. Le prestazioni della rete in termini di traffico smaltito migliorano in qualunque condizione di traffico, ovvero in modo completamente indipendente dalla distribuzione del traffico tra nodi
+   3. Il bridge introduce un ritardo aggiuntivo nelle trasmissioni tra nodi collegati mediante bridge
+   4. Non è necessario modificate la configurazione dei nodi collegati alla LAN per permettere un corretto funzionamento dopo la partizione della rete
+Risposta: B verificata.
+Commento: da definire
+
+
+
+
+
+
+
+
+
+
+
+
+Esercizio 148. Si considerino due LAN (Ethernet 10BaSE) A e B, collegate da uno bridge B1 e da un router R1 (B1 ed R1 sono in parallelo tra le due LAN). Si supponga che il bridge ed il router abbiano entrambe le porte attive e conoscano tutti gli indirizzi (MAC ed IP rispettivamente) degli host collegati alle due LAN. Quando un host collegato alla LAN A trasmette un pacchetto ARP per ottenere l’indirizzo MAC del router R1, quale tra le seguenti affermazioni è vera?
+   1. Il pacchetto è inoltrato sulla LAN B o bridge o dal router, a seconda del valore dell’indirizzo MAC di destinazione contenuto nel pacchetto
+   2. Il pacchetto è inoltrato sulla LAN B sia dal router R1 che dal bridge B1
+   3. Il pacchetto è inoltrato sulla LAN B solo dal router R1
+   4. Il pacchetto è inoltrato sulla LAN B solo dal bridge B1
+Risposta: D verificata.
+Commento: da definire
+
+
+Esercizio 149. La dimensione della finestra corrente del trasmettitore TCP nel corso di una connessione
+   1. E’ regola esclusivamente sulla base della segnalazione da parte del ricevitore della dimensione della finestra di ricezione per effettuare il controllo di flusso
+   2. Varia al variare della congestione nella rete e per il controllo di flusso esercitato dal ricevitore
+   3. E’ fissa
+Risposta: B verificata.
+Commento: da definire
+
+
+Esercizio 150. In caso di perdita di segmenti identificata mediante la ricezione di tre riscontri, la dimensione della finestra corrente del trasmettitore TCP
+   1. Viene portata ad un valore pari a metà della soglia
+   2. Viene portata ad un valore pari al valore della soglia
+   3. Viene riportata al valore iniziale, pari ad un segmento
+Risposta: C verificata.
+Commento: da definire
