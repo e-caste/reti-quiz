@@ -20,45 +20,45 @@ To use a virtual environment instead (cleaner but longer approach):
 ### Usage example
 
 ```
-Do you want to update the .txt file with the latest version from Google Docs? (Press Enter to skip) [y/N] 
+Do you want to update the .txt file with the latest version from Google Docs? (Press Enter to skip) [y/N] y
 Do you want to change the number of questions for this quiz? (Default is 28) [y/N] y
 What number of questions would you like? Enter a number: 3
-Quiz 103
-E’ data una topologia di rete con N nodi e M canali unidirezionali. Ogni canale ha capacità C Mbit/s. L’algoritmo di instradamento è tale da distribuire uniformemente il traffico sui canali della rete. Il numero medio di canali attraversato da un pacchetto nel percorso della sorgente alla destinazione è pari a D. La quantità massima di traffico smaltito dalla rete aumenta se: 
-   A) Diminuisce C a pari N, M e D
-   B) Diminuisce M a pari N, D e C
-   C) Diminuisce D a pari N, M e C
-   D) Diminuisce N a pari D, M e C
+Quiz 138
+Un protocollo
+   A) E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di pari livello
+   B) E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di stesso sistema
+   C) E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due sistemi che vengono collegati tra loro
+   D) E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di sistemi diversi
 
 Possible answers: A, B, C, D (not case sensitive)
-Please enter your answer: c
+Please enter your answer: a
 Correct!
-se la distanza media diminuisce, a parità di capacità del canale ,il traffico smaltito dovrebbe aumentare.
+Per definizione un’entità comunica con altre entità dello stesso livello.
 
-Quiz 125
-L’Address Resolution Protocol (ARP)
-A) Consente di ottenere un indirizzo Ethernet da assegnare alla scheda della macchina che ha effettuato la richiesta ARP
-B) Consente ad un host di conoscere l’indirizzo ip del suo DNS server
-C) Realizza in termini OSI una funzione di mapping (traduzione) tra (3)-indirizzi e (2)-indirizzi
+Quiz 24
+Che cosa si intende per il dominio di collisione (collision domain) in Ethernet?
+   A) La porzione di rete entro la quale viene rilevata una stessa collisione
+   B) Il numero di bit dell’intestazione dei pacchetti che possono essere danneggiati da una collisione
+   C) L’insieme dei nodi che interrompono la trasmissione a causa di una collisione
+
+Possible answers: A, B, C (not case sensitive)
+Please enter your answer: b
+Wrong. -- The correct answer is A
+Dominio di collisione: porzione di rete in cui due trame collidono. Vedi lucidi m“Dominio di collisione”. 
+
+Quiz 145
+Quale tra le seguenti affermazioni è vera?
+   A) Una topologia T1, con N nodi, C canali e distanza media M1, consente sempre di smaltire una   quantità di traffico minore di una topologia T2, con N nodi, C canali e distanza media M2>M1, solo con traffico uniformemente distribuito tra nodi.
+   B) Una topologia T1, con N nodi, C canali e distanza media M1, consente sempre di smaltire una quantità di traffico minore di una topologia T2, con N nodi, C canali e distanza media M2>M1, indipendentemente dalla distribuzione di traffico.
+   C) La quantità di traffico smaltita in una topologia T1, con N nodi, C canali e distanza media M1, rispetto a quella smaltita in una topologia T2, con N nodi, C canali e distanza media M2>M1, dipende dalla distribuzione del traffico tra nodi
 
 Possible answers: A, B, C (not case sensitive)
 Please enter your answer: c
 Correct!
-consente di conoscere l’indirizzo mac di un’altro host conoscendo il suo indirizzo ip
-
-Quiz 51
-Una scheda Ethernet di uno switch elabora (ovvero legge e decide se e come instradare)
-   A) Solo i pacchetti con indirizzo MAC di destinazione broadcast
-   B) Tutti i pacchetti, indipendentemente dall’indirizzo di destinazione
-   C) Solo i pacchetti con indirizzo MAC di destinazione unicast pari a quello dello switch
-   D) Solo i pacchetti con indirizzo MAC di destinazione multicast
-
-Possible answers: A, B, C, D (not case sensitive)
-Please enter your answer: a
-Wrong.
-Vedere funzionamento switch.
+da definire.
 
 Quiz finished. Your result: 14/30 (max 28) -- correct: 2 -- wrong: 1
+Elapsed time for this quiz: 0h 0m 41s
 ```
 
 
