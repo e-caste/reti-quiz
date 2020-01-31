@@ -92,8 +92,8 @@ def main():
     start_time = perf_counter()
     for i, q_n in enumerate(extracted_questions):
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
-        q = q_and_a.split("Risposta")[0].replace("1.", "A)").replace("2.", "B)").replace("3.", "C)") \
-                   .replace("4.", "D)").replace("5.", "E)")
+        q = q_and_a.split("Risposta")[0].replace("1. ", "A) ").replace("2. ", "B) ").replace("3. ", "C) ") \
+                   .replace("4. ", "D) ").replace("5. ", "E) ")
         # correct answer
         a = q_and_a.split("Risposta: ")[1].split()[0]
         # explanation
