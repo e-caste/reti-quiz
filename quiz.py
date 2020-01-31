@@ -47,7 +47,7 @@ def extract_questions(n_questions: int = 28) -> list:
 
 def main():
     update_file = input("Do you want to update the .txt file with the latest version from Google Docs? "
-                        "(Press Enter to skip) [y/N]: ")
+                        "(Press Enter to skip) [y/N] ")
     if update_file.lower() == 'y':
         download_latest_google_doc()
 
