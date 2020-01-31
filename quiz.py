@@ -26,6 +26,7 @@ def download_latest_google_doc():
     response = requests.get(dl_link)
     with open(file_name, 'w') as f:
         f.write(response.content.decode('utf-8'))
+    print("The latest version of " + file_name + " has been downloaded.")
 
 
 def get_number_of_questions() -> int:
