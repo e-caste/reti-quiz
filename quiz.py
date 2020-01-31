@@ -1,6 +1,16 @@
 from sys import stderr
 from random import choice
 from math import ceil
+from time import clock
+
+
+def human_readable_time(secs: int) -> str:
+    hours = int(secs / 3600)
+    secs -= hours * 3600
+    minutes = int(secs / 60)
+    secs -= minutes * 60
+    seconds = int(secs)
+    return str(hours) + "h " + str(minutes) + "m " + str(seconds) + "s"
 
 
 def download_latest_google_doc():
@@ -78,6 +88,7 @@ def main():
         extracted_questions = extract_questions()
 
     correct_answers = 0
+    start_time = clock()
     for q_n in extracted_questions:
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
         q = q_and_a.split("Risposta")[0].replace("1.", "A)").replace("2.", "B)").replace("3.", "C)") \
@@ -107,9 +118,11 @@ def main():
             else:
                 ans = input("Answer not recognized. Please enter it again: ")
 
+    elapsed_time_in_seconds = int(clock() - start_time)
     wrong_answers = n_q - correct_answers
     mark = ceil((correct_answers - wrong_answers * .5) / n_q * 28)
     print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers}")
+    print("Elapsed time for this quiz: " + human_readable_time(elapsed_time_in_seconds))
 
 
 if __name__ == '__main__':
