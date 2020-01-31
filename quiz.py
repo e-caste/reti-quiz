@@ -1,7 +1,7 @@
 from sys import stderr
 from random import choice
 from math import ceil
-from time import clock
+from time import perf_counter
 
 
 def human_readable_time(secs: int) -> str:
@@ -88,7 +88,7 @@ def main():
         extracted_questions = extract_questions()
 
     correct_answers = 0
-    start_time = clock()
+    start_time = perf_counter()
     for q_n in extracted_questions:
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
         q = q_and_a.split("Risposta")[0].replace("1.", "A)").replace("2.", "B)").replace("3.", "C)") \
@@ -118,7 +118,7 @@ def main():
             else:
                 ans = input("Answer not recognized. Please enter it again: ")
 
-    elapsed_time_in_seconds = int(clock() - start_time)
+    elapsed_time_in_seconds = int(perf_counter() - start_time)
     wrong_answers = n_q - correct_answers
     mark = ceil((correct_answers - wrong_answers * .5) / n_q * 28)
     print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers}")
