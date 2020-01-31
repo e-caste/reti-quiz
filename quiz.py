@@ -126,5 +126,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    download_latest_google_doc()
+    main()
