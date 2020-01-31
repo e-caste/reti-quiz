@@ -90,7 +90,7 @@ def main():
 
     correct_answers = 0
     start_time = perf_counter()
-    for q_n in extracted_questions:
+    for i, q_n in enumerate(extracted_questions):
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
         q = q_and_a.split("Risposta")[0].replace("1.", "A)").replace("2.", "B)").replace("3.", "C)") \
                    .replace("4.", "D)").replace("5.", "E)")
@@ -105,7 +105,7 @@ def main():
                 available_answers.append(poss_a[0])
         avail_ans_str = str(available_answers)[1:-1].replace("'", "")
         # user's answer
-        print("Quiz " + str(q_n))
+        print(f"Quiz {q_n} -- {i + 1}/{len(extracted_questions)}")
         ans = input(q + "\nPossible answers: " + avail_ans_str + " (not case sensitive)\nPlease enter your answer: ")
         while True:
             if ans.upper() in available_answers:
