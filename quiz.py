@@ -4,7 +4,7 @@ from math import ceil
 
 
 def download_latest_google_doc():
-    file_id = "1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU"
+    file_id = "1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU"  # on Google Docs
     dl_link = f"https://docs.google.com/document/d/{file_id}/export?format=txt"
     file_name = "Raccolta quiz.txt"
     try:
@@ -17,7 +17,6 @@ def download_latest_google_doc():
     print(response.content)
     with open(file_name, 'w') as f:
         f.write(response.content.decode('utf-8'))
-
 
 
 def get_number_of_questions() -> int:
@@ -47,6 +46,11 @@ def extract_questions(n_questions: int = 28) -> list:
 
 
 def main():
+    update_file = input("Do you want to update the .txt file with the latest version from Google Docs? "
+                        "(Press Enter to skip) [y/N]: ")
+    if update_file.lower() == 'y':
+        download_latest_google_doc()
+
     try:
         with open("Raccolta quiz.txt", 'r') as f:
             text = f.read()
