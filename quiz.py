@@ -14,7 +14,6 @@ def download_latest_google_doc():
               "Docs file. Please install it with:\npip3 install requests", file=stderr)
         exit(42)
     response = requests.get(dl_link)
-    print(response.content)
     with open(file_name, 'w') as f:
         f.write(response.content.decode('utf-8'))
 
