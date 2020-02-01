@@ -87,8 +87,10 @@ def main():
                 print("Input not recognized. Please try again.", file=stderr)
     else:
         extracted_questions = extract_questions()
-
+    
+    print("You can press 'S' or 's' instead of giving an answer to skip a question.\n")
     correct_answers = 0
+    wrong_answers = 0
     start_time = perf_counter()
     for i, q_n in enumerate(extracted_questions):
         q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
@@ -108,21 +110,24 @@ def main():
         print(f"Quiz {q_n} -- {i + 1}/{len(extracted_questions)}")
         ans = input(q + "\nPossible answers: " + avail_ans_str + " (not case sensitive)\nPlease enter your answer: ")
         while True:
-            if ans.upper() in available_answers:
-                if ans.upper() == a:
+            if ans.upper() in available_answers + ["S"]:
+                if ans.upper() == "S":
+                    print("Skipping question... The correct answer is " + a + ".")
+                elif ans.upper() == a:
                     print("Correct!")
                     correct_answers += 1
                 else:
                     print("Wrong. -- The correct answer is " + a + ".")
+                    wrong_answers += 1
                 print(comment + "\n")
                 break
             else:
                 ans = input("Answer not recognized. Please enter it again: ")
 
     elapsed_time_in_seconds = int(perf_counter() - start_time)
-    wrong_answers = n_q - correct_answers
+    not_given_answers = n_q - correct_answers - wrong_answers
     mark = ceil((correct_answers - wrong_answers * .5) / n_q * 28)
-    print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers}")
+    print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers} -- not given: {not_given_answers}")
     print("Elapsed time for this quiz: " + human_readable_time(elapsed_time_in_seconds))
 
 
