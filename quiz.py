@@ -113,7 +113,7 @@ def main():
                     print("Correct!")
                     correct_answers += 1
                 else:
-                    print("Wrong. -- The correct answer is " + a)
+                    print("Wrong. -- The correct answer is " + a + ".")
                 print(comment + "\n")
                 break
             else:
