@@ -42,6 +42,7 @@ def get_number_of_questions() -> int:
         print("File 'Raccolta quiz.txt' not found.\n"
               "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU -> File -> Download -> Normal text (.txt)",
               file=stderr)
+        exit(69)
 
 
 def extract_questions(n_questions: int = 28) -> list:
@@ -69,6 +70,7 @@ def main():
         print("File 'Raccolta quiz.txt' not found.\n"
               "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU -> File -> Download -> Normal text (.txt)",
               file=stderr)
+        exit(69)
 
     n_q = 28
     change_number_of_questions = input("Do you want to change the number of questions for this quiz? (Default is 28) [y/N] ")
