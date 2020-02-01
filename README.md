@@ -2,7 +2,7 @@
 
 ### How to run
 
-Simply download this repository by clicking the "Download Repository" button to the top right of this page or clone it from the command line with `git clone https://git.caste.dev/e-caste/reti-quiz.git`. If you have downloaded it as a .zip file, you need to unzip to a folder with `unzip reti-quiz.zip` (or by double-clicking the file in your system's file explorer).  
+Simply download this repository by clicking the "Download Repository" button to the top right of this page or clone it from the command line with `git clone https://git.caste.dev/e-caste/reti-quiz.git`. If you have downloaded it as a .zip file, you need to unzip it to a folder with `unzip reti-quiz.zip` (or by double-clicking the file in your system's file explorer).  
 Head to the directory where you have cloned it with `cd reti-quiz`, then you can run it with `python3 quiz.py`.  
 
 This project's only optional dependency is `requests`, which is needed to automatically download the latest version of the file from Google Docs.  
@@ -69,4 +69,6 @@ Elapsed time for this quiz: 0h 00m 41s
 This project has been tested using `python3.7`.  
 Requirements: `python3.6` or newer.  
 To download Python you can head to https://www.python.org/downloads/
+
+This project is currently hosted as private repo on [my Github page](https://github.com/e-caste) since I figured it would be better if it was only public to students with the link to this page and not to everyone who visits Github.
 
