@@ -3,16 +3,16 @@
 ### How to run
 
 Simply download this repository by clicking the "Download Repository" button to the top right of this page or clone it from the command line with `git clone https://git.caste.dev/e-caste/reti-quiz.git`. If you have downloaded it as a .zip file, you need to unzip to a folder with `unzip reti-quiz.zip` (or by double-clicking the file in your system's file explorer).  
-Head to the directory where you have cloned it with `cd reti-quiz`, then you can simply run it with `python3 quiz.py`.  
+Head to the directory where you have cloned it with `cd reti-quiz`, then you can run it with `python3 quiz.py`.  
 
-This project has only `requests` as an optional dependency, to automatically download the latest version of the file from Google Docs.  
+This project's only optional dependency is `requests`, which is needed to automatically download the latest version of the file from Google Docs.  
 It's recommended to install it in a virtual environment, but you may download it to your system-wide Python libraries with `pip3 install requests`.  
 
 To use a virtual environment instead (cleaner but longer approach):  
 - go to repo directory with `cd reti-quiz`
-- make it with `python3 -m venv venv`
-- activate it with `source venv/bin/activate`
-- install requests with `pip install requests`
+- make virtualenv directory with `python3 -m venv venv`
+- activate the virtualenv with `source venv/bin/activate`
+- install requests inside the virtualenv with `pip install requests`
 - use script: `python quiz.py`
 - when finished, deactivate the virtualenv with `deactivate`
 
@@ -23,6 +23,8 @@ To use a virtual environment instead (cleaner but longer approach):
 Do you want to update the .txt file with the latest version from Google Docs? (Press Enter to skip) [y/N] y
 Do you want to change the number of questions for this quiz? (Default is 28) [y/N] y
 What number of questions would you like? Enter a number: 3
+You can press 'S' or 's' instead of giving an answer to skip a question.
+
 Quiz 138
 Un protocollo
    A) E’ un insieme di regole semantiche e sintattiche per consentire la comunicazione tra due entità di pari livello
@@ -57,12 +59,14 @@ Please enter your answer: c
 Correct!
 da definire.
 
-Quiz finished. Your result: 14/30 (max 28) -- correct: 2 -- wrong: 1
-Elapsed time for this quiz: 0h 0m 41s
+Quiz finished. Your result: 14/30 (max 28) -- correct: 2 -- wrong: 1 -- not given: 0
+Elapsed time for this quiz: 0h 00m 41s
 ```
 
 
 ### Info
 
-This project has been tested using `python3.7`.
+This project has been tested using `python3.7`.  
+Requirements: `python3.6` or newer.  
+To download Python you can head to https://www.python.org/downloads/
 
