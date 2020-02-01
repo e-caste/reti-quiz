@@ -10,7 +10,7 @@ def human_readable_time(secs: int) -> str:
     minutes = int(secs / 60)
     secs -= minutes * 60
     seconds = int(secs)
-    return str(hours) + "h " + str(minutes) + "m " + str(seconds) + "s"
+    return str(hours).zfill(2) + "h " + str(minutes).zfill(2) + "m " + str(seconds).zfill(2) + "s"
 
 
 def download_latest_google_doc():
