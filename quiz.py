@@ -4,6 +4,11 @@ from math import ceil
 from time import perf_counter
 
 
+dl_msg = "File 'Raccolta quiz.txt' not found.\n" \
+         "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU " \
+         "-> File -> Download -> Normal text (.txt)"
+
+
 def human_readable_time(secs: int) -> str:
     hours = int(secs / 3600)
     secs -= hours * 3600
@@ -43,9 +48,7 @@ def get_number_of_questions() -> int:
         return n_questions
 
     except FileNotFoundError:
-        print("File 'Raccolta quiz.txt' not found.\n"
-              "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU -> File -> Download -> Normal text (.txt)",
-              file=stderr)
+        print(dl_msg, file=stderr)
         exit(69)
 
 
@@ -71,13 +74,12 @@ def main():
             text = f.read()
 
     except FileNotFoundError:
-        print("File 'Raccolta quiz.txt' not found.\n"
-              "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU -> File -> Download -> Normal text (.txt)",
-              file=stderr)
+        print(dl_msg, file=stderr)
         exit(69)
 
     n_q = 28
-    change_number_of_questions = input("Do you want to change the number of questions for this quiz? (Default is 28) [y/N] ")
+    change_number_of_questions = input("Do you want to change the number of questions for this quiz? "
+                                       "(Default is 28) [y/N] ")
     if change_number_of_questions.lower() == 'y':
         while True:
             n_q = input("What number of questions would you like? Enter a number: ")
@@ -133,7 +135,8 @@ def main():
     elapsed_time_in_seconds = int(perf_counter() - start_time)
     not_given_answers = n_q - correct_answers - wrong_answers
     mark = ceil((correct_answers - wrong_answers * .5) / n_q * 28)
-    print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers} -- not given: {not_given_answers}")
+    print(f"Quiz finished. Your result: {mark}/30 (max 28) -- correct: {correct_answers} -- wrong: {wrong_answers} "
+          f"-- not given: {not_given_answers}")
     print("Elapsed time for this quiz: " + human_readable_time(elapsed_time_in_seconds))
 
 
