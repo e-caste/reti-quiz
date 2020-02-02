@@ -117,7 +117,7 @@ def main():
         possible_answers = ["A)", "B)", "C)", "D)", "E)"]
         available_answers = []
         for poss_a in possible_answers:
-            if poss_a in q:
+            if poss_a in q.split()[1].split()[0] or q.startswith(poss_a):
                 available_answers.append(poss_a[0])
         avail_ans_str = str(available_answers)[1:-1].replace("'", "")
         # user's answer
