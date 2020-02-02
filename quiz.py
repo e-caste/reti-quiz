@@ -87,10 +87,10 @@ def main():
     change_number_of_questions = input("Do you want to change the number of questions for this quiz? "
                                        "(Default is 28) [y/N] ")
     if change_number_of_questions.lower() == 'y':
+        n_avail_questions = get_number_of_questions()
         while True:
             n_q = input("What number of questions would you like? Enter a number: ")
             if n_q.isdigit():
-                n_avail_questions = get_number_of_questions()
                 if int(n_q) < n_avail_questions:
                     n_q = int(n_q)
                     extracted_questions = extract_questions(n_q)
