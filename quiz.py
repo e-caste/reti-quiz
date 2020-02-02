@@ -23,7 +23,11 @@ def download_latest_google_doc():
         print("The requests module is not installed, thus this script can't download the latest version of the Google "
               "Docs file. Please install it with:\npip3 install requests", file=stderr)
         exit(42)
-    response = requests.get(dl_link)
+    try:
+        response = requests.get(dl_link)
+    except requests.ConnectionError:
+        print("You're not connected to the Internet. Please try again later. Skipping download...", file=stderr)
+        return
     with open(file_name, 'w') as f:
         f.write(response.content.decode('utf-8'))
     print("The latest version of " + file_name + " has been downloaded.")
@@ -137,5 +141,5 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print("Exiting...")
-        exit(42)
+        print("\nQuitting...")
+        exit(1)
