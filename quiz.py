@@ -91,7 +91,7 @@ def main():
         while True:
             n_q = input("What number of questions would you like? Enter a number: ")
             if n_q.isdigit():
-                if int(n_q) < n_avail_questions:
+                if int(n_q) <= n_avail_questions:
                     n_q = int(n_q)
                     extracted_questions = extract_questions(n_q)
                     break
