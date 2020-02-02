@@ -2,11 +2,14 @@ from sys import stderr
 from random import choice
 from math import ceil
 from time import perf_counter
+import string
 
 
-dl_msg = "File 'Raccolta quiz.txt' not found.\n" \
-         "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU " \
-         "-> File -> Download -> Normal text (.txt)"
+file_name = "Raccolta quiz.txt"
+dl_msg = "Please download it from https://docs.google.com/document/d/1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU " \
+         "-> File -> Download -> Normal text (.txt)\nor\nRelaunch this script and answer 'y' to the first question"
+not_found_msg = f"File '{file_name}' not found.\n" + dl_msg
+empty_msg = f"It seems that {file_name} is empty.\n" + dl_msg
 
 
 def human_readable_time(secs: int) -> str:
@@ -21,7 +24,6 @@ def human_readable_time(secs: int) -> str:
 def download_latest_google_doc():
     file_id = "1wSpYcLHNeTCCatJaCriWi6h8m_pihWl3hAVESZ2JgEU"  # on Google Docs
     dl_link = f"https://docs.google.com/document/d/{file_id}/export?format=txt"
-    file_name = "Raccolta quiz.txt"
     try:
         import requests
     except ImportError:
@@ -35,21 +37,25 @@ def download_latest_google_doc():
         return
     with open(file_name, 'w') as f:
         f.write(response.content.decode('utf-8'))
-    print("The latest version of " + file_name + " has been downloaded.")
+    print(f"The latest version of {file_name} has been downloaded.")
 
 
 def get_number_of_questions() -> int:
     n_questions = 0
     try:
-        with open("Raccolta quiz.txt", 'r') as f:
-            for line in f.readlines():
-                if "Esercizio" in line:
-                    n_questions = max(int(line.split()[1].split(".")[0]), n_questions)
-        return n_questions
-
+        with open(file_name, 'r') as f:
+            text = f.read()
     except FileNotFoundError:
-        print(dl_msg, file=stderr)
+        print(not_found_msg, file=stderr)
         exit(69)
+
+    if set(text) <= set(string.whitespace):
+        print(empty_msg, file=stderr)
+        exit(2)
+    for line in text.splitlines():
+        if "Esercizio" in line:
+            n_questions = max(int(line.split()[1].split(".")[0]), n_questions)
+    return n_questions
 
 
 def extract_questions(n_questions: int = 28) -> list:
@@ -70,11 +76,11 @@ def main():
         download_latest_google_doc()
 
     try:
-        with open("Raccolta quiz.txt", 'r') as f:
+        with open(file_name, 'r') as f:
             text = f.read()
 
     except FileNotFoundError:
-        print(dl_msg, file=stderr)
+        print(not_found_msg, file=stderr)
         exit(69)
 
     n_q = 28
