@@ -8,7 +8,7 @@ from time import perf_counter
 import string
 
 # import Docker environment variables
-link = os.environ["LINK"]
+link = "" #os.environ["LINK"]
 
 # TODO: fix text is decoded but with wrong characters
 windows = platform.startswith("win")
@@ -99,7 +99,11 @@ def get_q_n_a(text: str, q_n: int) -> tuple:
     # correct answer
     a = q_and_a.split("Risposta: ")[1]
     if " " in a:
-        a = a.split()[0]
+        # TODO: hunt down this bug
+        try:
+            a = a.split()[0]
+        except IndexError:
+            print("IndexError in question " + q_n)
     # explanation
     comment = q_and_a.split("Commento: ")[1].split("\n\n")[0]
     return q, a, comment
