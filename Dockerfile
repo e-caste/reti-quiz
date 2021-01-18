@@ -10,6 +10,6 @@ COPY *.py ./
 CMD ["pypy3", "-u", "reti_quiz_telegram_bot.py"]
 
 # build with
-#   docker build -t bogglebot .
+#   docker build -t netbot:latest .
 # run with
-# -e TOKEN=... -e CST_CID=...
+# -e TOKEN=... -e CST_CID=... -e LINK=...
