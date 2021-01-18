@@ -14,7 +14,6 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 from telegram.utils.helpers import mention_html
 from telegram.utils.request import Request
 import logging
-from secret import token, working_directory, castes_chat_id
 from quiz import (get_number_of_questions, extract_questions, get_q_n_a, file_name, get_available_answers,
                   download_latest_google_doc, set_forbidden_questions, clean_comments_from_text)
 from math import ceil
@@ -25,6 +24,10 @@ from datetime import time
 import shutil
 from string import whitespace
 from contextlib import suppress
+
+# import Docker environment variables
+token = os.environ["TOKEN"]
+castes_chat_id = os.environ["CST_CID"]
 
 HTML = ParseMode.HTML
 debug = sys.platform.startswith("darwin")
@@ -480,6 +483,4 @@ def main():
 
 
 if __name__ == '__main__':
-    if not debug:
-        os.chdir(working_directory)
     main()
