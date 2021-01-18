@@ -103,7 +103,7 @@ def get_q_n_a(text: str, q_n: int) -> tuple:
         try:
             a = a.split()[0]
         except IndexError:
-            print("IndexError in question " + q_n)
+            print("IndexError in question " + str(q_n) + "\nWith text:\n" + text)
     # explanation
     comment = q_and_a.split("Commento: ")[1].split("\n\n")[0]
     return q, a, comment
