@@ -97,7 +97,9 @@ def get_q_n_a(text: str, q_n: int) -> tuple:
     q = q_and_a.split("Risposta")[0].replace("1. ", " A) ").replace("2. ", " B) ").replace("3. ", " C) ") \
         .replace("4. ", " D) ").replace("5. ", " E) ").replace(" -- ", "")
     # correct answer
-    a = q_and_a.split("Risposta: ")[1].split()[0]
+    a = q_and_a.split("Risposta: ")[1]
+    if " " in a:
+        a = a.split()[0]
     # explanation
     comment = q_and_a.split("Commento: ")[1].split("\n\n")[0]
     return q, a, comment
