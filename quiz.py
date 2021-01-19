@@ -8,7 +8,7 @@ from time import perf_counter
 import string
 
 # import Docker environment variables
-link = "" #os.environ["LINK"]
+link = os.environ["LINK"]
 
 # TODO: fix text is decoded but with wrong characters
 windows = platform.startswith("win")
@@ -86,27 +86,42 @@ def extract_questions(n_questions: int = 28) -> list:
 
 
 def get_q_n_a(text: str, q_n: int) -> tuple:
-    if windows:
-        q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n\n")[0]
-    else:
-        try:
-            q_and_a = text.split("Esercizio " + str(q_n) + ". ")[1].split("\n\n")[0]
-        except IndexError:
-            print("Error splitting question #" + str(q_n))
-            raise
-    q = q_and_a.split("Risposta")[0].replace("1. ", " A) ").replace("2. ", " B) ").replace("3. ", " C) ") \
+    def remove_empty_lines(text_block: str) -> str:
+        return "\n".join([line for line in text_block.splitlines() if line.strip()])
+    tmp = text.split("Esercizio " + str(q_n) + ". ")[1]
+    question, answer, comment = ("", "", "")
+    # form question
+    for line in tmp.splitlines():
+        if "Risposta" not in line:
+            question += line + "\n"
+        else:
+            break
+    question = question.replace("1. ", " A) ").replace("2. ", " B) ").replace("3. ", " C) ") \
         .replace("4. ", " D) ").replace("5. ", " E) ").replace(" -- ", "")
-    # correct answer
-    a = q_and_a.split("Risposta: ")[1]
-    if " " in a:
-        # TODO: hunt down this bug
-        try:
-            a = a.split()[0]
-        except IndexError:
-            print("IndexError in question " + str(q_n) + "\nWith text:\n" + text)
-    # explanation
-    comment = q_and_a.split("Commento: ")[1].split("\n\n")[0]
-    return q, a, comment
+    # form answer
+    # ignoring the first n lines, where n is the number of lines of the question
+    for line in tmp.splitlines()[len(question.splitlines()):]:
+        if "Commento" not in line:
+            answer += line + "\n"
+        else:
+            break
+    # form comment
+    # ignoring the first n lines, where n is the number of lines of the question + the number of lines of the answer
+    for line in tmp.splitlines()[len(question.splitlines()) + len(answer.splitlines()):]:
+        if line and "Esercizio " + str(q_n + 1) not in line:
+            comment += line + "\n"
+        else:
+            break
+    question = remove_empty_lines(question)
+    answer = remove_empty_lines(answer)
+    comment = remove_empty_lines(comment)
+    # make answer one letter only
+    answer = answer.replace("Risposta: ", "").replace("\n", "")
+    if " " in answer:
+        answer = answer.split()[0]
+    # clean comment
+    comment = comment.replace("Commento: ", "")
+    return question, answer, comment
 
 
 def get_available_answers(q: str) -> list:
