@@ -231,6 +231,16 @@ def main():
     print("Elapsed time for this quiz: " + human_readable_time(elapsed_time_in_seconds))
 
 
+def test(text: str):
+    set_forbidden_questions()
+    for i in range(1, get_number_of_questions() + 1):
+        if i not in forbidden_question_numbers:
+            print(i)
+            for t in get_q_n_a(text, i):
+                print(t)
+            print()
+
+
 if __name__ == '__main__':
     try:
         main()
