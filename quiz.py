@@ -40,16 +40,23 @@ def download_latest_google_doc(use_logger: bool = False):
               "Docs file. Please install it with:\npip3 install requests", file=stderr)
         exit(42)
     try:
+        s = ""
         response = requests.get(dl_link)
     except requests.ConnectionError:
-        print("You're not connected to the Internet. Please try again later. Skipping download...", file=stderr)
+        s = "You're not connected to the Internet. Please try again later. Skipping download..."
+        print(s, file=stderr)
         return
-    with open(file_name, 'w') as f:
-        if windows:
-            f.write(response.content.decode('cp1252', errors='ignore'))
-        else:
-            f.write(response.content.decode('utf-8'))
-    s = f"The latest version of {file_name} has been downloaded."
+    except requests.HTTPError:
+        s = f"HTTP error when downloading {file_name}"
+        print(s)
+
+    if not s:
+        with open(file_name, 'w') as f:
+            if windows:
+                f.write(response.content.decode('cp1252', errors='ignore'))
+            else:
+                f.write(response.content.decode('utf-8'))
+            s = f"The latest version of {file_name} has been downloaded."
     if use_logger:
         return s
     else:
