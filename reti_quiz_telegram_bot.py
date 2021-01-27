@@ -349,6 +349,11 @@ def update_quiz_file(context):
         __read_text()
         context.bot.send_message(chat_id=castes_chat_id,
                                  text="New file is empty")
+    if "<!DOCTYPE html>" in text:
+        shutil.copy(file_name + '.bak', file_name)
+        __read_text()
+        context.bot.send_message(chat_id=castes_chat_id,
+                                 text="New file is HTML error")
     set_forbidden_questions()
     # otherwise, keep backup (it will be overwritten) and new file
 
