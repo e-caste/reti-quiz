@@ -99,7 +99,7 @@ def get_q_n_a(text: str, q_n: int) -> tuple:
     question, answer, comment = ("", "", "")
     # form question
     for line in tmp.splitlines():
-        if "Risposta" not in line:
+        if "Risposta" not in line and "Esercizio " + str(q_n + 1) not in line and "Orale" not in line:
             question += line + "\n"
         else:
             break
@@ -108,14 +108,14 @@ def get_q_n_a(text: str, q_n: int) -> tuple:
     # form answer
     # ignoring the first n lines, where n is the number of lines of the question
     for line in tmp.splitlines()[len(question.splitlines()):]:
-        if "Commento" not in line:
+        if "Commento" not in line and "Esercizio " + str(q_n + 1) not in line and "Orale" not in line:
             answer += line + "\n"
         else:
             break
     # form comment
     # ignoring the first n lines, where n is the number of lines of the question + the number of lines of the answer
     for line in tmp.splitlines()[len(question.splitlines()) + len(answer.splitlines()):]:
-        if line and "Esercizio " + str(q_n + 1) not in line:
+        if line and "Esercizio " + str(q_n + 1) not in line and "Orale" not in line:
             comment += line + "\n"
         else:
             break
