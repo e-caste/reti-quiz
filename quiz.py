@@ -148,7 +148,9 @@ def set_forbidden_questions():
     n_q = get_number_of_questions()
     for i in range(n_q):
         try:
-            text.split("Esercizio " + str(i + 1) + ". ")[1].split("\n\n")[0]
+            quiz = text.split("Esercizio " + str(i + 1) + ". ")[1].split("\n\n")[0]
+            if "Risposta" not in quiz:
+                forbidden_question_numbers.append(i + 1)
         except IndexError:
             forbidden_question_numbers.append(i + 1)
             continue
