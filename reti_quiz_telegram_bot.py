@@ -251,32 +251,33 @@ def quiz_question(update, context):
 
 
 def quiz_ans(update, context):
-    with suppress(KeyError):
-        ans = update.message.text  # TODO: fix NoneType object has no attribute text
-        qnum = str(context.user_data['questions'][context.user_data['q_counter'] - 1])
-        if ans == 'Skip':
-            context.user_data['current_quiz']['skipped'] += 1
-            reply = "<b>Skipping...</b> The correct answer is " + context.user_data['current_quiz']['ans']
-            logger.info("User " + __get_username(update) + " skipped question #" + qnum + ".")
-        elif ans == context.user_data['current_quiz']['ans']:
-            context.user_data['current_quiz']['correct'] += 1
-            reply = "<b>Correct!</b>"
-            logger.info("User " + __get_username(update) + " got question #" + qnum + " right!")
-        else:
-            reply = "<b>Wrong.</b> The correct answer is " + context.user_data['current_quiz']['ans']
-            logger.info("User " + __get_username(update) + " got question #" + qnum + " wrong.")
+    if update and update.message is not None:
+        with suppress(KeyError):
+            ans = update.message.text
+            qnum = str(context.user_data['questions'][context.user_data['q_counter'] - 1])
+            if ans == 'Skip':
+                context.user_data['current_quiz']['skipped'] += 1
+                reply = "<b>Skipping...</b> The correct answer is " + context.user_data['current_quiz']['ans']
+                logger.info("User " + __get_username(update) + " skipped question #" + qnum + ".")
+            elif ans == context.user_data['current_quiz']['ans']:
+                context.user_data['current_quiz']['correct'] += 1
+                reply = "<b>Correct!</b>"
+                logger.info("User " + __get_username(update) + " got question #" + qnum + " right!")
+            else:
+                reply = "<b>Wrong.</b> The correct answer is " + context.user_data['current_quiz']['ans']
+                logger.info("User " + __get_username(update) + " got question #" + qnum + " wrong.")
 
-        update.message.reply_text(text=reply + "\n" + context.user_data['current_quiz']['comment']
-                                  .replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
-                                  .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),  # UNWRAP html formatting
-                                  parse_mode=HTML)
+            update.message.reply_text(text=reply + "\n" + context.user_data['current_quiz']['comment']
+                                      .replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
+                                      .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),  # UNWRAP html formatting
+                                      parse_mode=HTML)
 
-        del context.user_data['current_quiz']['ans']
-        del context.user_data['current_quiz']['comment']
+            del context.user_data['current_quiz']['ans']
+            del context.user_data['current_quiz']['comment']
 
-        quiz_question(update, context)
+            quiz_question(update, context)
 
-        return QUIZ
+            return QUIZ
 
 
 def cancel(update, context):
