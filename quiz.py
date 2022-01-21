@@ -146,6 +146,7 @@ def set_forbidden_questions():
     with open(file_name, 'r') as f:
         text = f.read()
     n_q = get_number_of_questions()
+    text = text.replace("\n\nRisposta", "Risposta")
     for i in range(n_q):
         try:
             quiz = text.split("Esercizio " + str(i + 1) + ". ")[1].split("\n\n")[0]
@@ -252,6 +253,9 @@ def test(text: str):
 
 if __name__ == '__main__':
     try:
+        # print(get_number_of_questions())
+        # set_forbidden_questions()
+        # print(get_number_of_questions())
         main()
     except KeyboardInterrupt:
         print("\nQuitting...")
