@@ -10,7 +10,7 @@ Good luck!
 from telegram import Bot, ReplyKeyboardMarkup
 from telegram.parsemode import ParseMode
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
-                          ConversationHandler, PicklePersistence, messagequeue as mq)
+                          ConversationHandler, PicklePersistence, messagequeue as mq, JobQueue)
 from telegram.utils.helpers import mention_html
 from telegram.utils.request import Request
 import logging
@@ -18,7 +18,7 @@ from math import ceil
 import os
 import sys
 import traceback
-from datetime import time
+from datetime import time, datetime
 import shutil
 from string import whitespace
 from contextlib import suppress
@@ -98,7 +98,25 @@ def start(update, context):
                 reply_markup=questions_markup
             )
             logger.info("User " + __get_username(update) + " started a quiz.")
+
+            if not context.bot_data.get('usage_stats'):
+                __init_usage_stats(context)
+
+            context.bot_data['usage_stats']['daily'].add(update.message.chat_id)
+            context.bot_data['usage_stats']['weekly'].add(update.message.chat_id)
+            context.bot_data['usage_stats']['monthly'].add(update.message.chat_id)
+            context.bot_data['usage_stats']['total'].add(update.message.chat_id)
+
             return CHOOSING_NQ
+
+
+def __init_usage_stats(context):
+    context.bot_data['usage_stats'] = {
+        'daily': set(),
+        'weekly': set(),
+        'monthly': set(),
+        'total': set(),
+    }
 
 
 def reply_to_choose_nq(update, context):
@@ -374,6 +392,24 @@ def update_quiz_file(context):
     # otherwise, keep backup (it will be overwritten) and new file
 
 
+def send_usage_stats(context):
+    if not context.bot_data.get('usage_stats'):
+        __init_usage_stats(context)
+
+    # send stats
+    context.bot.send_message(chat_id=castes_chat_id,
+                             text="<b>Bot's usage stats</b>:\n" + "\n".join([k + " " + str(len(v))
+                                                                            for k, v in context.bot_data['usage_stats'].items()
+                                                                        ]),
+                             parse_mode=HTML)
+    # cleanup
+    context.bot_data['usage_stats']['daily'] = set()
+    if datetime.today().strftime("%A").lower() == "monday":
+        context.bot_data['usage_stats']['weekly'] = set()
+    if datetime.today().day == 1:
+        context.bot_data['usage_stats']['monthly'] = set()
+
+
 def __read_text():
     global text
     with open(file_name, 'r') as f:
@@ -444,9 +480,12 @@ def main():
                       persistence=pp,
                       use_context=True)
 
-    j = updater.job_queue
+    j: JobQueue = updater.job_queue
+    # using UTC timezone
     j.run_daily(update_quiz_file,
-                time=time(hour=4, minute=0))  # using UTC timezone
+                time=time(hour=4, minute=0))
+    j.run_daily(send_usage_stats,
+                time=time(hour=0, minute=0, second=1))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
