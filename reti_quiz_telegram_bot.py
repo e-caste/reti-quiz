@@ -472,7 +472,18 @@ def main():
     __read_text()
     set_forbidden_questions()
 
-    pp = PicklePersistence(filename='networks_quiz_bot_convo_db')
+    def open_db():
+        return PicklePersistence(filename='networks_quiz_bot_convo_db')
+
+    try:
+        pp = open_db()
+    except TypeError:
+        old_db_name = "networks_quiz_bot_convo_db.bak_" + str(time())
+        os.rename("networks_quiz_bot_convo_db", os.path.join("dbs_old", old_db_name))
+        logger.error("The database was corrupted. It has been saved as dbs_old/" + old_db_name +
+                     " and has now been reset.")
+        pp = open_db()
+
     updater = Updater(bot=MQBot(token=token,
                                 request=Request(con_pool_size=8),
                                 mqueue=mq.MessageQueue(all_burst_limit=29, all_time_limit_ms=1020,

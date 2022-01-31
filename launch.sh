@@ -8,6 +8,7 @@ docker run --restart unless-stopped \
            -v "$PWD"/$DB:$WORKDIR/$DB \
            -v "$PWD"/$DOC:$WORKDIR/$DOC \
            -v "$PWD"/$DOC.bak:$WORKDIR/$DOC.bak \
+           -v "$PWD"/dbs_old:$WORKDIR/dbs_old \
            -e TOKEN="" \
            -e CST_CID="" \
            -e LINK="" \
