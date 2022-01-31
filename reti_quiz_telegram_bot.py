@@ -88,62 +88,63 @@ markup_abcdef = ReplyKeyboardMarkup(reply_keyboard_abcdef, one_time_keyboard=Tru
 
 
 def start(update, context):
-    reply = "Hi <b>" + str(update.message.from_user.first_name) + "</b>, welcome to Networks Quiz Bot!" \
-            if update and update.message else "Hi, welcome to Network Quiz Bot!"
-    logger.info("User " + __get_username(update) + " started a quiz.")
-    # if context.user_data:  # TODO: add stats to reply
-    #     reply += ""
-    update.message.reply_text(
-        text=reply,
-        parse_mode=HTML,
-        reply_markup=questions_markup
-    )
-
-    return CHOOSING_NQ
+    if update:
+        reply = "Hi <b>" + str(update.message.from_user.first_name) + "</b>, welcome to Networks Quiz Bot!" \
+                if update and update.message else "Hi, welcome to Network Quiz Bot!"
+        if update and update.message:
+            update.message.reply_text(
+                text=reply,
+                parse_mode=HTML,
+                reply_markup=questions_markup
+            )
+            logger.info("User " + __get_username(update) + " started a quiz.")
+            return CHOOSING_NQ
 
 
 def reply_to_choose_nq(update, context):
     n_q_max = get_number_of_questions()
-    update.message.reply_text("Please enter a number ≤ " + str(n_q_max))
-    return CHANGE_NQ  # goto choose_number_of_questions()
+    if update and update.message:
+        update.message.reply_text("Please enter a number ≤ " + str(n_q_max))
+        return CHANGE_NQ  # goto choose_number_of_questions()
 
 
 def choose_number_of_questions(update, context):
-    msg_text = update.message.text
-    n_q_max = get_number_of_questions()
-    if msg_text.isdigit():
-        if 1 <= int(msg_text) <= n_q_max:
-            context.user_data['n_q'] = int(msg_text)
-            logger.info("User " + __get_username(update) + " selected custom number of questions: " + msg_text)
+    if update and update.message:
+        msg_text = update.message.text
+        n_q_max = get_number_of_questions()
+        if msg_text.isdigit():
+            if 1 <= int(msg_text) <= n_q_max:
+                context.user_data['n_q'] = int(msg_text)
+                logger.info("User " + __get_username(update) + " selected custom number of questions: " + msg_text)
+            else:
+                update.message.reply_text("Number out of range. Please enter a number in the [1,"
+                                          + str(n_q_max) + "] interval.")
+                return CHANGE_NQ  # loop
         else:
-            update.message.reply_text("Number out of range. Please enter a number in the [1,"
-                                      + str(n_q_max) + "] interval.")
+            update.message.reply_text("Input not recognized. Please try again.")
             return CHANGE_NQ  # loop
-    else:
-        update.message.reply_text("Input not recognized. Please try again.")
-        return CHANGE_NQ  # loop
 
-    __prepare_user_for_quiz(context)
-    quiz_question(update, context)
+        __prepare_user_for_quiz(context)
+        quiz_question(update, context)
 
-    return QUIZ
+        return QUIZ
 
 
 def set_default_number_of_questions(update, context):
-    # n_q = 5 if update.message.text == __quick_quiz_number_button else 28
-    if update.message.text == __quick_quiz_number_button:
-        n_q = 5
-    elif update.message.text == __exam_sim_covid19_number_button:
-        n_q = 31
-    else:
-        n_q = 28
-    context.user_data['n_q'] = n_q
-    logger.info("User " + __get_username(update) + " selected default number of questions: " + str(n_q))
+    if update and update.message:
+        if update and update.message.text == __quick_quiz_number_button:
+            n_q = 5
+        elif update and update.message.text == __exam_sim_covid19_number_button:
+            n_q = 31
+        else:
+            n_q = 28
+        context.user_data['n_q'] = n_q
+        logger.info("User " + __get_username(update) + " selected default number of questions: " + str(n_q))
 
-    __prepare_user_for_quiz(context)
-    quiz_question(update, context)
+        __prepare_user_for_quiz(context)
+        quiz_question(update, context)
 
-    return QUIZ
+        return QUIZ
 
 
 def __prepare_user_for_quiz(context):
@@ -179,33 +180,34 @@ def __get_q_and_a(context):
 
 
 def __send_question(update, context):
-    q, a, comment = __get_q_and_a(context)
-    avail_ans = get_available_answers(q)
-    if 'B' not in avail_ans:
-        markup = markup_a
-    elif 'B' in avail_ans and 'C' not in avail_ans:
-        markup = markup_ab
-    elif 'C' in avail_ans and 'D' not in avail_ans:
-        markup = markup_abc
-    elif 'D' in avail_ans and 'E' not in avail_ans:
-        markup = markup_abcd
-    elif 'E' in avail_ans and 'F' not in avail_ans:
-        markup = markup_abcde
-    else:
-        markup = markup_abcdef
-    context.user_data['current_quiz']['ans'] = a
-    context.user_data['current_quiz']['comment'] = comment
-    # Quiz 58 -- 1/28
-    update.message.reply_text(text="<b>Quiz " + str(context.user_data['questions'][context.user_data['q_counter']])
-                                   + " -- " + str(context.user_data['q_counter'] + 1) + "/" +
-                                   str(context.user_data['n_q']) + "</b>\n"
-                                   + q.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
-                                   .replace(" A)", "<b>A)</b>").replace(" B)", "<b>B)</b>").replace(" C)", "<b>C)</b>")
-                                   .replace(" D)", "<b>D)</b>").replace(" E)", "<b>E)</b>").replace(" F)", "<b>F)</b>")
-                                   .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),   # UNWRAP html formatting
-                              parse_mode=HTML,
-                              reply_markup=markup)
-    context.user_data['q_counter'] += 1
+    if update and update.message:
+        q, a, comment = __get_q_and_a(context)
+        avail_ans = get_available_answers(q)
+        if 'B' not in avail_ans:
+            markup = markup_a
+        elif 'B' in avail_ans and 'C' not in avail_ans:
+            markup = markup_ab
+        elif 'C' in avail_ans and 'D' not in avail_ans:
+            markup = markup_abc
+        elif 'D' in avail_ans and 'E' not in avail_ans:
+            markup = markup_abcd
+        elif 'E' in avail_ans and 'F' not in avail_ans:
+            markup = markup_abcde
+        else:
+            markup = markup_abcdef
+        context.user_data['current_quiz']['ans'] = a
+        context.user_data['current_quiz']['comment'] = comment
+        # Quiz 58 -- 1/28
+        update.message.reply_text(text="<b>Quiz " + str(context.user_data['questions'][context.user_data['q_counter']])
+                                       + " -- " + str(context.user_data['q_counter'] + 1) + "/" +
+                                       str(context.user_data['n_q']) + "</b>\n"
+                                       + q.replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
+                                       .replace(" A)", "<b>A)</b>").replace(" B)", "<b>B)</b>").replace(" C)", "<b>C)</b>")
+                                       .replace(" D)", "<b>D)</b>").replace(" E)", "<b>E)</b>").replace(" F)", "<b>F)</b>")
+                                       .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),   # UNWRAP html formatting
+                                  parse_mode=HTML,
+                                  reply_markup=markup)
+        context.user_data['q_counter'] += 1
 
 
 def __save_stats(context):
@@ -233,13 +235,14 @@ def __save_stats(context):
 
 
 def __print_quiz_stats(update, context):
-    last = context.user_data['stats']['last_quiz']
-    max_mark = 31 if context.user_data['n_q'] == 31 else 28
-    update.message.reply_text(text="Quiz finished. Your result: <b>" + str(last['mark']) + "/30</b> (max " +
-                                   str(max_mark) + ")\n"
-                                   "<i>Correct: " + str(last['correct']) + " -- Wrong: " + str(last['wrong'])
-                                   + " -- Not given: " + str(last['skipped']) + "</i>",
-                              parse_mode=HTML)
+    if update and update.message:
+        last = context.user_data['stats']['last_quiz']
+        max_mark = 31 if context.user_data['n_q'] == 31 else 28
+        update.message.reply_text(text="Quiz finished. Your result: <b>" + str(last['mark']) + "/30</b> (max " +
+                                       str(max_mark) + ")\n"
+                                       "<i>Correct: " + str(last['correct']) + " -- Wrong: " + str(last['wrong'])
+                                       + " -- Not given: " + str(last['skipped']) + "</i>",
+                                  parse_mode=HTML)
 
 
 def __finish_quiz(update, context):
@@ -259,7 +262,7 @@ def quiz_question(update, context):
 
 
 def quiz_ans(update, context):
-    if update and update.message is not None:
+    if update and update.message:
         with suppress(KeyError):
             ans = update.message.text
             qnum = str(context.user_data['questions'][context.user_data['q_counter'] - 1])
@@ -275,53 +278,57 @@ def quiz_ans(update, context):
                 reply = "<b>Wrong.</b> The correct answer is " + context.user_data['current_quiz']['ans']
                 logger.info("User " + __get_username(update) + " got question #" + qnum + " wrong.")
 
-            update.message.reply_text(text=reply + "\n" + context.user_data['current_quiz']['comment']
-                                      .replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
-                                      .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),  # UNWRAP html formatting
-                                      parse_mode=HTML)
+            if update and update.message:
+                update.message.reply_text(text=reply + "\n" + context.user_data['current_quiz']['comment']
+                                          .replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")  # WRAP in html formatting
+                                          .replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"),  # UNWRAP html formatting
+                                          parse_mode=HTML)
 
-            del context.user_data['current_quiz']['ans']
-            del context.user_data['current_quiz']['comment']
+                del context.user_data['current_quiz']['ans']
+                del context.user_data['current_quiz']['comment']
 
-            quiz_question(update, context)
+                quiz_question(update, context)
 
-            return QUIZ
+                return QUIZ
 
 
 def cancel(update, context):
-    update.message.reply_text(text="<i>Quiz canceled.</i> Come back later to try again!",
-                              parse_mode=HTML)
-    logger.info("User " + __get_username(update) + " canceled.")
-    __clear_temp_user_data(context)
+    if update and update.message:
+        update.message.reply_text(text="<i>Quiz canceled.</i> Come back later to try again!",
+                                  parse_mode=HTML)
+        logger.info("User " + __get_username(update) + " canceled.")
+        __clear_temp_user_data(context)
 
-    return ConversationHandler.END
+        return ConversationHandler.END
 
 
 def show_statistics(update, context):
     if 'stats' not in context.user_data:
         __prepare_user_for_quiz(context)
     s = context.user_data['stats']
-    update.message.reply_text(text="Total answered: " + str(s['total']) + "\n"
-                                   "Correct answers: " + str(s['correct'])
-                                   + " -- <b>" + str(round(s['correct'] / s['total'] * 100, 2)) + "%</b>\n"
-                                   "Wrong answers: " + str(s['wrong'])
-                                   + " -- " + str(round(s['wrong'] / s['total'] * 100, 2)) + "%\n"
-                                   "Skipped answers: " + str(s['skipped'])
-                                   + " -- " + str(round(s['skipped'] / s['total'] * 100, 2)) + "%\n"
-                                   "\n"
-                                   "Average mark: <b>" + str(round(sum(s['marks']) / len(s['marks']), 2)) + "</b>\n"
-                                   "Highest mark: " + str(max(s['marks'])) + "\n"
-                                   "Lowest mark: " + str(min(s['marks']))
-                                    if len(s['marks']) > 0 else "No stats yet. Try your first quiz with /start!",
-                              parse_mode=HTML)
-    logger.info("User " + __get_username(update) + " asked for his stats.")
+    if update and update.message:
+        update.message.reply_text(text="Total answered: " + str(s['total']) + "\n"
+                                       "Correct answers: " + str(s['correct'])
+                                       + " -- <b>" + str(round(s['correct'] / s['total'] * 100, 2)) + "%</b>\n"
+                                       "Wrong answers: " + str(s['wrong'])
+                                       + " -- " + str(round(s['wrong'] / s['total'] * 100, 2)) + "%\n"
+                                       "Skipped answers: " + str(s['skipped'])
+                                       + " -- " + str(round(s['skipped'] / s['total'] * 100, 2)) + "%\n"
+                                       "\n"
+                                       "Average mark: <b>" + str(round(sum(s['marks']) / len(s['marks']), 2)) + "</b>\n"
+                                       "Highest mark: " + str(max(s['marks'])) + "\n"
+                                       "Lowest mark: " + str(min(s['marks']))
+                                        if len(s['marks']) > 0 else "No stats yet. Try your first quiz with /start!",
+                                  parse_mode=HTML)
+        logger.info("User " + __get_username(update) + " asked for his stats.")
 
 
 def show_help(update, context):
-    update.message.reply_text(text="Use /start to begin.\n"
-                                   "Use /stats to check your statistics.\n"
-                                   "Use /help to show this help.")
-    return ConversationHandler.END
+    if update and update.message:
+        update.message.reply_text(text="Use /start to begin.\n"
+                                       "Use /stats to check your statistics.\n"
+                                       "Use /help to show this help.")
+        return ConversationHandler.END
 
 
 def __clear_temp_user_data(context):
@@ -332,7 +339,7 @@ def __clear_temp_user_data(context):
 
 
 def __get_username(update):
-    if update.message:
+    if update and update.message:
         u = update.message.from_user.username
         u2 = update.message.from_user.first_name
         return str(u) if u else str(u2)
