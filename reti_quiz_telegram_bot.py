@@ -14,8 +14,6 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters,
 from telegram.utils.helpers import mention_html
 from telegram.utils.request import Request
 import logging
-from quiz import (get_number_of_questions, extract_questions, get_q_n_a, file_name, get_available_answers,
-                  download_latest_google_doc, set_forbidden_questions, clean_comments_from_text)
 from math import ceil
 import os
 import sys
@@ -25,12 +23,20 @@ import shutil
 from string import whitespace
 from contextlib import suppress
 
-# import Docker environment variables
-token = os.environ["TOKEN"]
-castes_chat_id = os.environ["CST_CID"]
-
 HTML = ParseMode.HTML
 debug = sys.platform.startswith("darwin")
+
+if debug:
+    from secret import token, castes_chat_id, link
+    os.environ['LINK'] = link
+else:
+    # import Docker environment variables
+    token = os.environ["TOKEN"]
+    castes_chat_id = os.environ["CST_CID"]
+
+# import from quiz after setting environment variables
+from quiz import (get_number_of_questions, extract_questions, get_q_n_a, file_name, get_available_answers,
+                  download_latest_google_doc, set_forbidden_questions, clean_comments_from_text)
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
