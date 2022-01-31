@@ -141,6 +141,8 @@ def set_default_number_of_questions(update, context):
 
 
 def __prepare_user_for_quiz(context):
+    if 'n_q' not in context.user_data:
+        context.user_data['n_q'] = 0
     context.user_data['questions'] = extract_questions(context.user_data['n_q'])
     context.user_data['q_counter'] = 0
     context.user_data['current_quiz'] = {
