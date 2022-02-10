@@ -98,15 +98,6 @@ def start(update, context):
                 reply_markup=questions_markup
             )
             logger.info("User " + __get_username(update) + " started a quiz.")
-
-            if not context.bot_data.get('usage_stats'):
-                __init_usage_stats(context)
-
-            context.bot_data['usage_stats']['daily'].add(update.message.chat_id)
-            context.bot_data['usage_stats']['weekly'].add(update.message.chat_id)
-            context.bot_data['usage_stats']['monthly'].add(update.message.chat_id)
-            context.bot_data['usage_stats']['total'].add(update.message.chat_id)
-
             return CHOOSING_NQ
 
 
@@ -252,6 +243,16 @@ def __save_stats(context):
     last['mark'] = mark
 
 
+def __update_bot_usage(chat_id, context):
+    if not context.bot_data.get('usage_stats'):
+        __init_usage_stats(context)
+
+    context.bot_data['usage_stats']['daily'].add(chat_id)
+    context.bot_data['usage_stats']['weekly'].add(chat_id)
+    context.bot_data['usage_stats']['monthly'].add(chat_id)
+    context.bot_data['usage_stats']['total'].add(chat_id)
+
+
 def __print_quiz_stats(update, context):
     if update and update.message:
         last = context.user_data['stats']['last_quiz']
@@ -267,6 +268,8 @@ def __finish_quiz(update, context):
     __save_stats(context)
     __print_quiz_stats(update, context)
     __clear_temp_user_data(context)
+    if update and update.message and update.message.chat_id:
+        __update_bot_usage(update.message.chat_id, context)
     logger.info("User " + __get_username(update) + " finished a quiz with "
                 + str(context.user_data['stats']['last_quiz']['mark']) + ".")
 
