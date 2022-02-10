@@ -18,21 +18,23 @@ from math import ceil
 import os
 import sys
 import traceback
-from datetime import time, datetime
+from datetime import time, datetime, timedelta
 import shutil
 from string import whitespace
 from contextlib import suppress
+import json
 
 HTML = ParseMode.HTML
 debug = sys.platform.startswith("darwin")
 
 if debug:
-    from secret import token, castes_chat_id, link
+    from secret import token, castes_chat_id, link, usage_history_file
     os.environ['LINK'] = link
 else:
     # import Docker environment variables
     token = os.environ["TOKEN"]
     castes_chat_id = os.environ["CST_CID"]
+    usage_history_file = os.environ["USAGE_FILE"]
 
 # import from quiz after setting environment variables
 from quiz import (get_number_of_questions, extract_questions, get_q_n_a, file_name, get_available_answers,
@@ -395,7 +397,7 @@ def update_quiz_file(context):
     # otherwise, keep backup (it will be overwritten) and new file
 
 
-def send_usage_stats(context):
+def handle_usage_stats(context):
     if not context.bot_data.get('usage_stats'):
         __init_usage_stats(context)
 
@@ -405,6 +407,24 @@ def send_usage_stats(context):
                                                                             for k, v in context.bot_data['usage_stats'].items()
                                                                         ]),
                              parse_mode=HTML)
+
+    # save to file
+    usage_stats_serializable = {k: list(v) for k, v in context.bot_data['usage_stats'].items()}  # convert sets to lists
+
+    if not os.path.isfile(usage_history_file):
+        if os.path.isdir(usage_history_file):  # Docker interprets a missing file as a directory
+            os.removedirs(usage_history_file)
+        with open(usage_history_file, "w") as f:
+            json.dump({}, f)
+
+    with open(usage_history_file, "r+") as f:
+        usage_history = json.load(f)
+        # yesterday's date in ISO 8601, e.g. "2022-02-09"import
+        usage_history[(datetime.today() - timedelta(days=1)).date().isoformat()] = usage_stats_serializable
+        f.seek(0)  # otherwise it will append a complete copy of the usage_history
+        json.dump(usage_history, f)
+        f.truncate()  # fix if the updated file is smaller than the original
+
     # cleanup
     context.bot_data['usage_stats']['daily'] = set()
     if datetime.today().strftime("%A").lower() == "monday":
@@ -498,8 +518,9 @@ def main():
     # using UTC timezone
     j.run_daily(update_quiz_file,
                 time=time(hour=4, minute=0))
-    j.run_daily(send_usage_stats,
-                time=time(hour=0, minute=0, second=1))
+    # j.run_daily(handle_usage_stats,
+    #             time=time(hour=0, minute=0, second=1))
+    j.run_once(handle_usage_stats, when=0)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
