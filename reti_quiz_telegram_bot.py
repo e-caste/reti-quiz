@@ -518,9 +518,8 @@ def main():
     # using UTC timezone
     j.run_daily(update_quiz_file,
                 time=time(hour=4, minute=0))
-    # j.run_daily(handle_usage_stats,
-    #             time=time(hour=0, minute=0, second=1))
-    j.run_once(handle_usage_stats, when=0)
+    j.run_daily(handle_usage_stats,
+                time=time(hour=0, minute=0, second=1))
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
