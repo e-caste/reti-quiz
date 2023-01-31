@@ -376,13 +376,18 @@ def update_quiz_file(context):
     logger.info(download_latest_google_doc(use_logger=True))
     # test the new file does not give an error
     try:
-        __read_text()
+        __read_text(do_test=True)
     except FileNotFoundError:
         # if it does, revert to backup and notify dev
         shutil.copy(file_name + '.bak', file_name)
         __read_text()
         context.bot.send_message(chat_id=castes_chat_id,
                                  text="Updated file was not found")
+    except Exception as e:
+        shutil.copy(file_name + '.bak', file_name)
+        context.bot.send_message(chat_id=castes_chat_id,
+                                 text="Updated file gave error: " + str(e))
+
     if set(text) <= set(whitespace):
         shutil.copy(file_name + '.bak', file_name)
         __read_text()
@@ -433,11 +438,17 @@ def handle_usage_stats(context):
         context.bot_data['usage_stats']['monthly'] = set()
 
 
-def __read_text():
+def __read_text(do_test: bool = False):
     global text
     with open(file_name, 'r') as f:
         text = f.read()
     text = clean_comments_from_text(text)
+    if do_test:
+        set_forbidden_questions(text)
+        n_q = get_number_of_questions(text)
+        question_indices = extract_questions(n_q)
+        for q in question_indices:
+            _ = get_q_n_a(text, q)
 
 
 def error(update, context):
@@ -516,8 +527,7 @@ def main():
 
     j: JobQueue = updater.job_queue
     # using UTC timezone
-    j.run_daily(update_quiz_file,
-                time=time(hour=4, minute=0))
+    j.run_repeating(update_quiz_file, interval=60 * 60, first=0)
     j.run_daily(handle_usage_stats,
                 time=time(hour=0, minute=0, second=1))
 

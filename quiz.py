@@ -63,14 +63,15 @@ def download_latest_google_doc(use_logger: bool = False):
         print(s)
 
 
-def get_number_of_questions() -> int:
+def get_number_of_questions(text: str = None) -> int:
     n_questions = 0
-    try:
-        with open(file_name, 'r') as f:
-            text = f.read()
-    except FileNotFoundError:
-        print(not_found_msg, file=stderr)
-        exit(69)
+    if text is None:
+        try:
+            with open(file_name, 'r') as f:
+                text = f.read()
+        except FileNotFoundError:
+            print(not_found_msg, file=stderr)
+            exit(69)
     if set(text) <= set(string.whitespace):
         print(empty_msg, file=stderr)
         exit(2)
@@ -142,9 +143,10 @@ def get_available_answers(q: str) -> list:
     return available_answers
 
 
-def set_forbidden_questions():
-    with open(file_name, 'r') as f:
-        text = f.read()
+def set_forbidden_questions(text: str = None):
+    if text is None:
+        with open(file_name, 'r') as f:
+            text = f.read()
     n_q = get_number_of_questions()
     text = text.replace("\n\nRisposta", "Risposta")
     for i in range(n_q):
