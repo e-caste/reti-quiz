@@ -439,16 +439,18 @@ def handle_usage_stats(context):
 
 
 def __read_text(do_test: bool = False):
-    global text
     with open(file_name, 'r') as f:
-        text = f.read()
-    text = clean_comments_from_text(text)
+        _text = f.read()
+    _text = clean_comments_from_text(_text)
     if do_test:
-        set_forbidden_questions(text)
-        n_q = get_number_of_questions(text)
-        question_indices = extract_questions(n_q)
+        _forbidden_question_numbers = set_forbidden_questions(_text, do_test=True)
+        n_q = get_number_of_questions(_text, forbidden_questions=len(_forbidden_question_numbers))
+        question_indices = extract_questions(n_q, forbidden_questions=_forbidden_question_numbers)
         for q in question_indices:
-            _ = get_q_n_a(text, q)
+            _ = get_q_n_a(_text, q)
+    # if everything went fine, update the global variable
+    global text
+    text = _text
 
 
 def error(update, context):

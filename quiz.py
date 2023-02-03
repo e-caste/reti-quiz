@@ -6,6 +6,7 @@ from random import choice
 from math import ceil
 from time import perf_counter
 import string
+from typing import List
 
 # import Docker environment variables
 link = os.environ["LINK"]
@@ -63,7 +64,7 @@ def download_latest_google_doc(use_logger: bool = False):
         print(s)
 
 
-def get_number_of_questions(text: str = None) -> int:
+def get_number_of_questions(text: str = None, forbidden_questions: int = None) -> int:
     n_questions = 0
     if text is None:
         try:
@@ -78,13 +79,14 @@ def get_number_of_questions(text: str = None) -> int:
     for line in text.splitlines():
         if "Esercizio" in line:
             n_questions = max(int(line.split()[1].split(".")[0]), n_questions)
-    return n_questions - len(forbidden_question_numbers)
+    return n_questions - (forbidden_questions if forbidden_questions is not None else len(forbidden_question_numbers))
 
 
-def extract_questions(n_questions: int = 28) -> list:
-    n_avail_questions = get_number_of_questions()
-    possible_questions = [i for i in range(1, n_avail_questions + len(forbidden_question_numbers) + 1)
-                          if i not in forbidden_question_numbers]
+def extract_questions(n_questions: int = 28, forbidden_questions: List[int] = None) -> list:
+    n_avail_questions = get_number_of_questions(forbidden_questions=len(forbidden_questions) if forbidden_questions is not None else None)
+    _forbidden_question_numbers = forbidden_questions if forbidden_questions is not None else forbidden_question_numbers
+    possible_questions = [i for i in range(1, n_avail_questions + len(_forbidden_question_numbers) + 1)
+                          if i not in _forbidden_question_numbers]
     extracted_questions = []
     for _ in range(n_questions):  # number of actual exam questions
         n = choice(possible_questions)
@@ -143,20 +145,29 @@ def get_available_answers(q: str) -> list:
     return available_answers
 
 
-def set_forbidden_questions(text: str = None):
+def set_forbidden_questions(text: str = None, do_test: bool = False):
     if text is None:
         with open(file_name, 'r') as f:
             text = f.read()
     n_q = get_number_of_questions()
     text = text.replace("\n\nRisposta", "Risposta")
+    _forbidden_question_numbers = []  # only used if do_test is True
     for i in range(n_q):
         try:
             quiz = text.split("Esercizio " + str(i + 1) + ". ")[1].split("\n\n")[0]
             if "Risposta" not in quiz:
-                forbidden_question_numbers.append(i + 1)
+                if do_test:
+                    _forbidden_question_numbers.append(i + 1)
+                else:
+                    forbidden_question_numbers.append(i + 1)
         except IndexError:
-            forbidden_question_numbers.append(i + 1)
+            if do_test:
+                _forbidden_question_numbers.append(i + 1)
+            else:
+                forbidden_question_numbers.append(i + 1)
             continue
+    if do_test:
+        return _forbidden_question_numbers
 
 
 # Google Docs comments are represented as [a], [b]...
